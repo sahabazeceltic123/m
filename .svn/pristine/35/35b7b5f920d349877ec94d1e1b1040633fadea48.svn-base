@@ -1,0 +1,951 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="quoteBodyBackground" [style.background]="'url(assets/quote/img/CVcity.jpg)'">
+  <header>
+    <div fxFlexFill style="background: #055ba9;">
+      <div fxLayout="row" class="container">
+        <mat-toolbar color="primary">
+
+          <header fxFlexFill fxFlex.lt-sm="50%">
+
+            <div style="cursor: pointer;" (click)="mainPage()" fxLayoutAlign="left" fxFlex="20" class="one">
+
+              <img *ngIf="white_label==0" src="assets/quote/img/logo.png" alt="logo" height="67">
+              <span fxLayoutAlign="right"> Commercial Vehicle</span>
+            </div>
+
+            <div fxFlex fxLayout fxLayoutAlign="flex-end" fxFlex="85" fxHide fxShow.gt-sm>
+              <div fxLayout="row" fxHide fxShow.gt-sm>
+
+                <button fxHide fxShow.gt-sm mat-button [matMenuTriggerFor]="menu">Insurance Type
+                  <mat-icon fxLayoutalign="right" aria-hidden="false" aria-label="Example keyboard_arrow_down icon">
+                    keyboard_arrow_down
+                  </mat-icon>
+                </button>
+                <button fxHide fxShow.gt-sm mat-button [matMenuTriggerFor]="menu">Insurance Company
+                  <mat-icon fxLayoutalign="right" aria-hidden="false" aria-label="Example keyboard_arrow_down icon">
+                    keyboard_arrow_down
+                  </mat-icon>
+                </button>
+                <button (click)="supportLink()" fxHide fxShow.gt-sm mat-button>Support</button>
+                <button fxHide fxShow.gt-sm mat-button *ngIf="!isLoggedIn" (click)="openDialogLongin()">Login</button>
+                <button fxHide fxShow.gt-sm mat-button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+                <button fxHide fxShow.gt-sm mat-button *ngIf="!isLoggedIn">Register</button>
+
+
+              </div>
+            </div>
+            <a class="nav-mob" fxHide (click)="openDialog()"><i class="material-icons">
+                storage
+              </i></a>
+            <ng-template #moo3>
+              <mat-dialog-actions>
+                <div fxLayout="row" fxFlex="100">
+                  <button mat-button [matMenuTriggerFor]="menu">Insurance Type
+                    <mat-icon fxLayoutalign="right" aria-hidden="false" aria-label="Example keyboard_arrow_down icon">
+                      keyboard_arrow_down
+                    </mat-icon>
+                  </button>
+                  <button mat-button [matMenuTriggerFor]="menu">Insurance Company
+                    <mat-icon fxLayoutalign="right" aria-hidden="false" aria-label="Example keyboard_arrow_down icon">
+                      keyboard_arrow_down
+                    </mat-icon>
+                  </button>
+                  <button mat-button [matMenuTriggerFor]="menu">Support</button>
+                  <button mat-button (click)="openDialogLongin()">Login</button>
+                  <button mat-button [matMenuTriggerFor]="menu">Register</button>
+                </div>
+              </mat-dialog-actions>
+            </ng-template>
+
+          </header>
+
+        </mat-toolbar>
+      </div>
+
+    </div>
+  </header>
+  <mat-menu x-position="before" #menu="matMenu">
+    <button mat-menu-item><a href="https://www.gibl.in/car-insurance/">Car Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/health-insurance/">Health Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/two-wheeler-insurance/">Two Wheeler Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/travel-insurance/">Travel Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/personal-accident-insurance/">Personal Accident
+        Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/home-insurance/">Home Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/commercial-vehicle-insurance/">Commercial Vehicle
+        Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/health-insurance/group-mediclaim-policy/">Group
+        Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/health-insurance/critical-illness-insurance/">Critical Illness
+        Insurance</a></button>
+    <button mat-menu-item><a href="https://www.gibl.in/gadget-insurance/">Gadget Insurance</a></button>
+
+  </mat-menu>
+
+  <div class="containerX">
+
+    <div class="container" fxLayout fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign="left" fxLayoutGap=""
+      fxLayoutGap.xs="0">
+      <div class="item item-2" *ngIf="makeActive" fxFlex="50%" fxFlex.lt-md="100%" fxFlexOrder="1">
+        <h3 [ngClass.lt-md]="{'mob-txt':true}">Compare Quotes from 25+ Car Insurance Companies in India
+        </h3>
+        <h4 [ngClass.lt-md]="{'mob-txt':true}">A great rate is just a few clicks away!
+        </h4>
+
+        <p class="motor_banner_p" fxHide="true" fxShow.gt-sm>Your choosing of the right car model will
+          help us find the right coverage for you.
+        </p>
+        <form class="example-container" [formGroup]="quoteForm">
+
+          <div class="pdding-bottom-1">
+            <mat-radio-group formControlName="isRenewal" >
+              <div *ngIf="IS_LIVE==0 || IS_LIVE==1">
+                <mat-radio-button (click)="isNewCar(0)" value="0" >I've bought a new Vehicle</mat-radio-button>
+                <mat-radio-button (click)="isNewCar(1)" value="1" >Renewal</mat-radio-button>
+              </div>
+              <div *ngIf="IS_LIVE==2">
+                <mat-radio-button (click)="isNewCar(1)" value="1" checked="checked">TP only</mat-radio-button>
+              </div>
+            </mat-radio-group>
+          </div>
+        </form>
+      </div>
+
+      <div class="item item-3" *ngIf="modelActive" fxFlex="50%" fxFlex.lt-md="100%" fxFlexOrder="1">
+        <h3 [ngClass.lt-md]="{'mob-txt':true}">Compare Quotes from 25+ Car Insurance Companies in India
+        </h3>
+        <h4 [ngClass.lt-md]="{'mob-txt':true}">A great rate is just a few clicks away!
+        </h4>
+
+        <p class="motor_banner_p" fxHide="true" fxShow.gt-sm>Online Purchase Discount
+          You can save up to 75% on premium when you purchase
+          car insurance policy from GIBL.
+        </p>
+        <!--       <form class="example-container" [formGroup]="options">
+      </form> -->
+      </div>
+      <div class="item item-4" *ngIf="fuelActive" fxFlex="50%" fxFlexOrder="1">
+        <h3 [ngClass.lt-md]="{'mob-txt':true}">Compare Quotes from 25+ Car Insurance Companies in India
+        </h3>
+        <h4 [ngClass.lt-md]="{'mob-txt':true}">A great rate is just a few clicks away!
+        </h4>
+
+        <p class="motor_banner_p" fxHide="true" fxShow.gt-sm>Choose the correct variant of your car from the list.
+
+          You can manually type your car’s <br> variant if it’s not visible in the list.
+        </p>
+
+      </div>
+      <div class="item item-5" *ngIf="variantActive" fxFlex="50%" fxFlex.lt-md="100%" fxFlexOrder="1">
+        <h3 [ngClass.lt-md]="{'mob-txt':true}">Compare Quotes from 25+ Car Insurance Companies in India
+        </h3>
+        <h4 [ngClass.lt-md]="{'mob-txt':true}">A great rate is just a few clicks away!
+        </h4>
+
+        <p class="motor_banner_p" fxHide="true" fxShow.gt-sm>We’re almost there!
+
+          The city or town that your car is registered in can affect <br> the amount of car insurance premium.
+
+          Make sure you select the right RTO from the list.
+        </p>
+        <!--       <form class="example-container" [formGroup]="options">
+      </form> -->
+      </div>
+      <div class="item item-6" *ngIf="registrationActive" fxFlex="50%" fxFlex.lt-md="100%" fxFlexOrder="1">
+        <h3 [ngClass.lt-md]="{'mob-txt':true}">Compare Quotes from 25+ Car Insurance Companies in India
+        </h3>
+        <h4 [ngClass.lt-md]="{'mob-txt':true}">A great rate is just a few clicks away!
+        </h4>
+
+        <p class="motor_banner_p" fxHide="true" fxShow.gt-sm>Compare bike insurance quotes from all the major players in
+          a
+          matter of a few clicks and instantly see the best price.
+        </p>
+        <!--       <form class="example-container" [formGroup]="options">
+      </form> -->
+      </div>
+      <div class="item item-7" *ngIf="contactActive" fxFlex="50%" fxFlex.lt-md="100%" fxFlexOrder="1">
+        <h3 [ngClass.lt-md]="{'mob-txt':true}">Compare Quotes from 25+ Car Insurance Companies in India
+        </h3>
+        <h4 [ngClass.lt-md]="{'mob-txt':true}">Add-on Coverage</h4>
+        <p class="motor_banner_p" fxHide="true" fxShow.gt-sm>Choose the correct variant of your car from the list.
+
+          You can manually type your car’s <br> variant if it’s not visible in the list.</p>
+
+      </div>
+      <div fxFlex="80" class="wrap-contact100" style="order:2;">
+          <h1>
+              Buy or Renew Commercial Vehicle Insurance Online
+And Save upto 80% on Premium
+          </h1>
+      <mat-tab-group>
+         
+          <mat-tab label="Goods carrier" id="new-tab"> 
+            
+              <form >
+                 
+                  <div class="new-tab">
+                    <label>Vehicle Sub class* </label>
+                    <br>
+                    <mat-radio-group >
+                      <mat-radio-button value="auto">Other than 3 Wheelers</mat-radio-button>
+                      <mat-radio-button value="always">3 Wheelers</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                  </form>  
+          </mat-tab>
+          <mat-tab label="Passenger carrier">
+              <form>
+                 
+                  <div class="new-tab">
+                    <label>Vehicle Sub class* </label>
+                    <br>
+                    <mat-radio-group>
+                      <mat-radio-button value="auto">Taxi</mat-radio-button>
+                      <mat-radio-button value="always">Auto Rikshaw</mat-radio-button>
+                      <mat-radio-button value="auto">2 Wheelers</mat-radio-button>
+                      <mat-radio-button value="always">Buses/ Shuttle</mat-radio-button>
+                      <mat-radio-button value="auto">E-Rikshaw</mat-radio-button>
+                     
+                    </mat-radio-group>
+                  </div>
+                  </form>  
+          </mat-tab>
+          <mat-tab label="Miscellaneous"> 
+              <form >
+                 
+                  
+                  <div  class="new-tab" fxFlex="100" fxLayout="row"  fxLayout.xs="column" *ngIf="!show">
+                      <div fxFlex="35" fxflex.xs="50" >
+                          <mat-radio-group >
+                             
+                              <mat-radio-button value="auto">Agricultar Tractor</mat-radio-button>
+                              <mat-radio-button value="always">Ambulance</mat-radio-button>
+                              <mat-radio-button value="auto">Drilling Rigs</mat-radio-button>
+                              <mat-radio-button value="always">Transit Mixer</mat-radio-button>
+                              <mat-radio-button value="auto">Plane Loaders & Other Vehicles</mat-radio-button>
+                              <mat-radio-button value="always">Crane</mat-radio-button>
+                              <mat-radio-button value="always">Excavators</mat-radio-button>
+                              <mat-radio-button value="always">Compressors</mat-radio-button>
+                              <mat-radio-button value="always">Generator Van</mat-radio-button>
+                              <mat-radio-button value="always">Harvester</mat-radio-button>
+                          </mat-radio-group>
+                      </div>
+                    <div fxFlex="25"  fxflex.xs="50">
+                        <mat-radio-group>
+                            <mat-radio-button value="auto">Garbage Van</mat-radio-button>
+                            <mat-radio-button value="always">	Fork Lift Trucks
+                              </mat-radio-button>
+                            <mat-radio-button value="auto">Bulldozers/graders</mat-radio-button>
+                            <mat-radio-button value="always">Cash Van</mat-radio-button>
+                            <mat-radio-button value="auto">Prision van</mat-radio-button>
+                            <mat-radio-button value="always">Recovery Van</mat-radio-button>
+                            <mat-radio-button value="always">Levellers</mat-radio-button>
+                            <mat-radio-button value="always">Road Rollers</mat-radio-button>
+                            <mat-radio-button value="always">Tower Wagons</mat-radio-button>
+                            <mat-radio-button value="always">Trailer</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div fxFlex="20" fxflex.xs="50">
+                        <mat-radio-group>
+                            <mat-radio-button value="auto">Breakdown Vehicles</mat-radio-button>
+                            <mat-radio-button value="always">Road Sweeper</mat-radio-button>
+                            <mat-radio-button value="auto">Military Tea Vans</mat-radio-button>
+                            <mat-radio-button value="always">Ladder Carrier Carts</mat-radio-button>
+                            <mat-radio-button value="auto">Tar Sprayers (Self Propelled)</mat-radio-button>
+                            <mat-radio-button value="always">Spraying Plant</mat-radio-button>
+                            <mat-radio-button value="auto">Rippers</mat-radio-button>
+                            <mat-radio-button value="always">Mobile Plant</mat-radio-button>
+                            <mat-radio-button value="always">Grabs</mat-radio-button>
+                            <mat-radio-button value="always">Scapers</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                
+                  </div>
+                  <div fxFlex="100">
+                      <a class="viewmore" (click)="show=!show">View More</a>
+                   </div> 
+                  <div  class="new-tab" fxFlex="100" fxLayout="row" *ngIf="show" fxLayout.xs="column">
+                      <div fxFlex="40" fxflex.xs="100">
+                          <mat-radio-group >
+                             
+                              <mat-radio-button value="auto">Fire Fighter</mat-radio-button>
+                              <mat-radio-button value="always">Gritting Machines</mat-radio-button>
+                              <mat-radio-button value="auto">Hearses</mat-radio-button>
+                              <mat-radio-button value="always">Horse Boxes</mat-radio-button>
+                              <mat-radio-button value="auto">Mobile Shops And Canteens</mat-radio-button>
+                              <mat-radio-button value="always">Scientific Vans</mat-radio-button>
+                              <mat-radio-button value="always">Pre-Mix Laying Equipment</mat-radio-button>
+                              <mat-radio-button value="always">Refrigeration/Pre-Cooling Un</mat-radio-button>
+                              <mat-radio-button value="always">Fire Brigade 
+                                </mat-radio-button>
+                               
+                          </mat-radio-group>
+                      </div>
+                    <div fxFlex="80"  fxflex.xs="50">
+                        <mat-radio-group>
+                            <mat-radio-button value="always">Cinema Film Recording</mat-radio-button>
+                            <mat-radio-button value="auto">Delivery Trucks
+                              </mat-radio-button>
+                            <mat-radio-button value="always">Dust Carts Water Carts Road Sweeper And Tower Wagons
+                              </mat-radio-button>
+                            <mat-radio-button value="auto">Road Sprinklers Used Also As Fire Fighting Vehicles</mat-radio-button>
+                            <mat-radio-button value="auto">Road Sprinklers Used Also As Fire Fighting Vehicles
+                              </mat-radio-button>
+                            <mat-radio-button value="always">Cash Van</mat-radio-button>
+                            <mat-radio-button value="auto">Prision van</mat-radio-button>
+                            <mat-radio-button value="always">Recovery Van</mat-radio-button>
+                            <mat-radio-button value="always">Levellers</mat-radio-button>
+                            
+                        </mat-radio-group>
+                    </div>
+                  
+                  
+                  </div>
+                  </form>  
+                
+          </mat-tab>
+
+        
+        </mat-tab-group>
+
+       <div style="text-align:center;">
+
+          <button mat-raised-button color="warn"  style="margin:auto; margin-top:25px; font-size:18px;
+          height: 49px" fxFlex="29">Next</button>
+        
+       </div> 
+       <small class="tandc">By clicking on Next Button, you agree to our <a href="https://www.gibl.in/UI/Pages/TermsOfUse.aspx">Terms & conditions</a></small>
+      </div>
+      <mat-horizontal-stepper fxFlexOrder="1" fxHide fxFlex="50%" style="width: 100%"
+        (selectionChange)="selectionChange($event)" [linear]="isLinear" #stepper>
+    
+        
+        <mat-step [stepControl]="brandFormGroup">
+          
+          <div>
+            <h1>What's the brand of your car?</h1>
+          </div>
+
+          <form [formGroup]="brandFormGroup">
+
+            <ng-template matStepLabel matTabContent>
+              <span [ngClass]="{'mat-step-label-selected-color':selectedStepperIndex!=1}"
+                [ngClass.lt-md]="{'hideme':true}" *ngIf="brandName.length>12;else brandNameTooltip"
+                matTooltipClass="example-tooltip-red" matTooltip="{{brandName}}" [matTooltipPosition]="'above'"
+                class="example-button">{{brandName|slice:0:12}}..</span>
+              <ng-template #brandNameTooltip>
+                <div [ngClass]="{'mat-step-label-selected-color':selectedStepperIndex!=1}">{{brandName}}</div>
+              </ng-template>
+            </ng-template>
+
+            <div fxFlex="100%" fxFlexFill>
+              <ng-select style="margin-top: 50px;padding-right: 10x;font-size: 15px;text-align: left;"
+                [virtualScroll]=true [items]="totalBrandList" bindLabel="name" (change)="brandChanged($event.id)"
+                dropdownPosition="bottom" [appendTo]="'body'" placeholder="Not in the list? Find your car's brand here">
+              </ng-select>
+            </div>
+          </form>
+          <div class="good-make" id="top-brand" style="margin-top:30px">
+
+            <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="center">
+              <ng-container *ngFor="let item of topBrandList">
+                <div class="img-wrap" fxFlex="0 1 calc(20.3% - 5px)" fxFlex.lt-md="0 1 calc(40% - 10x)"
+                  fxLayout.lt-sm="row" fxFlex.xs="30%" fxLayout.xs="column">
+                  <a (click)="move(2);makeTapped(item.brand_name,item.brand_code,'',item.id)" href="JavaScript:void(0);">
+                    <div class="good-make-wrap" [ngClass]="{'is-selected':item.brand_code === form_brand}">
+                      <img mat-card-image src='assets/quote/logo/{{item.brand_logo}}' alt='{{item.brand_name}}'>
+                      <div class="brand-name">{{item.brand_name}}</div>
+                    </div>
+                  </a>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="modelFormGroup" [editable]="isEditable">
+          <a href="JavaScript:void(0);" (click)="goBackward()">
+            <mat-icon aria-hidden="false" aria-label="Example keyboard_arrow_left icon">keyboard_arrow_left</mat-icon>
+          </a>
+          <h1>What is your car’s model?</h1>
+          <form [formGroup]="modelFormGroup">
+
+            <ng-template matStepLabel matTabContent>
+              <span [ngClass.lt-md]="{'hideme':true}" *ngIf="modelName.length>12;else modelNameTooltip"
+                matTooltipClass="example-tooltip-red" matTooltip="{{modelName}}" [matTooltipPosition]="'above'"
+                class="example-button">{{modelName| slice:0:12}}..</span>
+              <ng-template #modelNameTooltip>
+                <div>{{modelName}}</div>
+              </ng-template>
+            </ng-template>
+            <div fxFlex="100%" fxFlexFill>
+              <ng-select #modelSelect style="margin-top: 50px;padding-right: 10x;font-size: 15px;text-align: left;"
+                [virtualScroll]=true [items]="totalModelList" bindLabel="name"
+                (change)="modelTapped($event.model_name,$event.model_code);" dropdownPosition="bottom"
+                [appendTo]="'body'" placeholder="Not in the list? Find your car's model here"></ng-select>
+            </div>
+          </form>
+          <div class="good-make" id="top-model" style="margin-top: 10px">
+            <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="center" class="top-model__item" data-txt="AVEO"
+              id="model_AVEO" data-val="undefined" style="margin-top:30px">
+
+              <div *ngFor="let item of topModelList" [ngClass]="{'is-selected':item.model_code === form_model}"
+                style="width: 110px" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+                fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="50%"
+                (click)="move(3);modelTapped(item.model_name,item.model_code)">
+                <span class="example-button">{{item.model_name}}</span>
+              </div>
+
+            </div>
+            <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="center" class="top-model__item">
+              <div (click)="focusModle()" style="width: 100%" class="good-make-wrap img-wrap"
+                fxFlex="0 1 calc(33% - 32px)" fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%">
+                Others
+              </div>
+            </div>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="fuelFormGroup" [editable]="isEditable">
+          <a href="JavaScript:void(0);" (click)="goBackward()">
+            <mat-icon aria-hidden="false" aria-label="Example keyboard_arrow_left icon">keyboard_arrow_left</mat-icon>
+          </a>
+          <h1>What's type of fuel ?</h1>
+          <form [formGroup]="fuelFormGroup">
+            <ng-template matStepLabel matTabContent>
+              <span [ngClass.lt-md]="{'hideme':true}" class="example-button">{{fuelName}}</span>
+            </ng-template>
+
+            <div class="good-make" id="Fuel">
+
+              <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="22px" fxLayoutAlign="center"
+                class="top-model__item" data-txt="AVEO" id="model_AVEO" data-val="undefined">
+
+                <div *ngFor="let item of totalFuelList">
+                  <div *ngIf="item.fuel_logo!=''" [ngClass]="{'is-selected':item.fuel_type_text === form_fuel}" class="good-make-wrap img-wrap"
+                    fxFlex="0 1 calc(22% - 32px)" fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%"
+                    (click)="move(4);fuelTapped(item.fuel_type_text,item.fuel_type,item.model_code,item.is_non_battery)">
+                    <div class="good-make-wrap"><img alt="Chevrolet"
+                        src="assets/quote/img/{{item.fuel_logo}}">
+                      <div style="text-align: center">{{item.fuel_type_text}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="variantFormGroup" [editable]="isEditable">
+          <a href="JavaScript:void(0);" (click)="goBackward()">
+            <mat-icon aria-hidden="false" aria-label="Example keyboard_arrow_left icon">keyboard_arrow_left</mat-icon>
+          </a>
+          <h1>What's your car's variant?</h1>
+          <form [formGroup]="variantFormGroup">
+            <ng-template matStepLabel matTabContent>
+              <!-- <span fxHide fxShow.gt-sm>{{variantName| slice:0:10}}<span *ngIf="variantName.length>10">..</span></span> -->
+              <span [ngClass.lt-md]="{'hideme':true}" *ngIf="variantName.length>12;else variantNameTooltip"
+                matTooltipClass="example-tooltip-red" matTooltip="{{variantName}}" [matTooltipPosition]="'above'"
+                class="example-button">{{variantName| slice:0:12}}..</span>
+              <ng-template #variantNameTooltip>
+                <div>{{variantName}}</div>
+              </ng-template>
+            </ng-template>
+            <div fxFlex="100%" fxFlexFill>
+              <ng-select #variantSelect style="margin-top: 50px;padding-right: 10x;font-size: 15px;text-align: left;"
+                [virtualScroll]=true [items]="totalVariantList" bindLabel="name" dropdownPosition="bottom"
+                [appendTo]="'body'" (change)="variantTapped($event.id,$event.variant_name,$event.cubic_capacity);"
+                placeholder="Not in the list? Find your car's Variant"></ng-select>
+            </div>
+          </form>
+          <div class="good-make" id="variant" style="margin-top: 10px">
+
+            <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="22px" fxLayoutAlign="center"
+              class="top-model__item" data-txt="AVEO" id="model_AVEO" data-val="undefined">
+              <div *ngFor="let item of topVariantList" style="width: 100%"
+                [ngClass]="{'is-selected':item.variant_code === form_variant}" class="good-make-wrap img-wrap"
+                fxFlex="0 1 calc(33% - 32px)" fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%"
+                (click)="move(5);variantTapped(item.id,item.variant_name,item.variant_code,item.cubic_capacity)">
+                <span class="example-button">{{item.variant_name}} ({{item.cubic_capacity}} CC)</span>
+              </div>
+            </div>
+            <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="center" class="top-model__item">
+              <div (click)="focusVariant()" style="width: 100%" class="good-make-wrap img-wrap"
+                class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)" fxFlex.lt-md="0 1 calc(50% - 22px)"
+                fxFlex.lt-sm="100%">
+                Others
+              </div>
+            </div>
+          </div>
+        </mat-step>
+        <mat-step [stepControl]="regisFormGroup" [editable]="isEditable">
+          <a href="JavaScript:void(0);" (click)="goBackward()">
+            <mat-icon aria-hidden="false" aria-label="Example keyboard_arrow_left icon">keyboard_arrow_left</mat-icon>
+          </a>
+          <h1>What is your car registration location?</h1>
+          <form [formGroup]="regisFormGroup">
+            <ng-template matStepLabel matTabContent>
+              <span [ngClass.lt-md]="{'hideme':true}" class="example-button">{{registrationName}}</span>
+            </ng-template>
+            <ng-select formControlName="regisCtrl" #rtoSelect [selectOnTab]=false [appendTo]="'body'"
+              style="margin-top: 60px;padding-right: 10x;font-size: 15px;text-align: left;" [virtualScroll]=true
+              [items]="totalRtoList" bindLabel="name" (change)="registrationTapped($event.id);"
+              dropdownPosition="bottom" placeholder="Not in the list? Find car's registration location" (close)="get_rto_list()" required>
+            </ng-select>
+
+            <div class="good-make" id="Registration" style="margin-top: 10px">
+
+              <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="22px" fxLayoutAlign="center"
+                class="top-model__item" data-txt="AVEO" id="model_AVEO" data-val="undefined">
+                <div (click)="focusRto('5550')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+                  fxFlex.xs="0 1 calc(33% - 10px)" fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%">Delhi
+                </div>
+                <div (click)="focusRto('2526')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+                  fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%">Kolkata
+                </div>
+                <div (click)="focusRto('5355')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+                  fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%">Mumbai
+                </div>
+                <div (click)="focusRto('5603')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+                  fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%">Bangalore
+                </div>
+                <div (click)="focusRto('1819')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+                  fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%">Hyderabad
+                </div>
+                <div (click)="focusRto('4395')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+                  fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%">Shimla
+                </div>
+                <div (click)="focusRto('3873')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+                  fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%">Pune
+                </div>
+                <div (click)="focusRto('931')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+                  fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%">Chandigarh
+                </div>
+                <div (click)="focusRto('1890')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+                  fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%">Jaipur
+                </div>
+              </div>
+              <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="center" class="top-model__item">
+                <div (click)="focusRto('')" style="width: 100%" class="good-make-wrap img-wrap"
+                  fxFlex="0 1 calc(33% - 32px)" fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%">
+                  Others
+                </div>
+              </div>
+            </div>
+            <div *ngIf="form_premium_type==1">
+              <h1>What is your car registration Year?</h1>
+              <p>
+                <mat-form-field appearance="outline" fxFlex id="remove-margin">
+                  <!-- style="margin-top: -3.2em !important" -->
+                  <mat-label>Find your year of registration here</mat-label>
+                  <mat-select #rtoYrSelect formControlName="regisYrCtrl" placeholder="Select your registration year" #singleSelect>
+                    <mat-option *ngFor="let item of regYearDropdown" (click)="goForward();contactTapped(item)" [value]="item">
+                      {{item}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </p>
+            </div>
+            <!-- </div> -->
+            <div>
+              <button mat-button class="contact100-form-btn" type="submit" matStepperNext>
+                &nbsp; &nbsp;&nbsp; Save &
+                Continue &nbsp;&nbsp;&nbsp;</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="contactFormGroup" id="last-s" completed="false">
+          <a (click)="goBackward()" href="JavaScript:void(0);">
+            <mat-icon aria-hidden="false" aria-label="Example keyboard_arrow_left icon">keyboard_arrow_left</mat-icon>
+          </a>
+          <!-- <ng-template matStepLabel>Done</ng-template> -->
+          <h1>Please Provide the Information</h1>
+          <form [formGroup]="contactFormGroup" (ngSubmit)="contactFormSubmit()">
+            <mat-form-field appearance="outline" class="mat-form-field-select-margin"
+              style="margin-top:3.8em !important;">
+              <mat-label>Your Mobile Number</mat-label>
+              <input formControlName="mobileNoCtrl" matInput placeholder="Please Enter Your Mobile Number" maxlength="10" type="number" (input)="checkLength($event.target.value,10)">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Your Email Id</mat-label>
+              <input formControlName="emailCtrl" matInput placeholder="Please Enter Your Email Id">
+            </mat-form-field>
+            <div *ngIf="form_premium_type==1">
+              <mat-form-field appearance="outline">
+                <mat-label>Expiry Date</mat-label>
+                <input [min]="expireMinDate" formControlName="expiryDate" matInput [matDatepicker]="picker" date=true (focus)="picker.open()" placeholder="Please Select Policy Expiry Date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker [startAt]="startDate"></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Have you made any claim on last year?</mat-label>
+                <mat-select formControlName="lastClaim" placeholder="Last Claim Taken?">
+                  <mat-option value="1">Yes</mat-option>
+                  <mat-option value="0">No</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center" *ngIf="!contactSubmitLoader">
+              <div>
+                <button mat-button class="contact100-form-btn" type="submit">&nbsp;&nbsp;&nbsp;Continue to View
+                  Quotes&nbsp;&nbsp;&nbsp;</button>
+              </div>
+            </div>
+            <div fxLayout="row" style="height: 80px;margin-top: -45px" fxLayoutAlign="center center"
+              *ngIf="contactSubmitLoader">
+              <div id="registration-loader" style="text-align:center">
+                <div class="loader">Loading...</div>
+              </div>
+            </div>
+          </form>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </div>
+
+
+  </div>
+  <div class="container-wrap">
+    <div class="container">
+      <div class="container-fluid" id="content" >
+        <mat-tab-group>
+          <mat-tab label="About" >
+            <div fxFlex="100" class="new-car-b">
+              <div fxFlex="70" fxFlex.xs="100" style="margin-right: 25px;">
+                <h3>What Is Commercial Vehicle Insurance?</h3>
+                <p>
+                  If you have a commercial vehicle, you must have commercial vehicle insurance. A comprehensive vehicle insurance online policy keeps you and your business protected in case your commercial vehicle gets damaged in a road-mishap. A third-party commercial vehicle insurance online policy also provides coverage against liabilities to third-party in case of property damage and bodily injury or death. A comprehensive commercial vehicle insurance policy online further offers protection in case of theft of the insured commercial vehicle. 
+                </p>
+              </div>
+              <div fxFlex="30" class="new-car-b" fxHide.xs>
+                <img src="assets/quote/img/caro.png">
+              </div>
+            </div>
+            <div fxFlex="100" class="new-car-b">
+              <div fxFlex="30"  class="hidden-xs-down"  fxHide.xs >
+                <img src="assets/quote/img/caroo.png" style="max-width: 200px;">
+              </div>
+              <div fxFlex="70" fxFlex.xs="100" class="new-car-b" style="margin-right: 25px;">
+                <h3>Importance of Commercial Vehicle Policy</h3>
+                <p>
+                  Commercial vehicle insurance policies online offer comprehensive protection to your commercial vehicles. If your commercial vehicle gets involved in accidents you will have to bear the expenses in case you don’t compare and buy commercial vehicle insurance online and renew commercial vehicle insurance policy online before expiry.
+                </p>
+                <p>
+                  A comprehensive commercial vehicle insurance policy online will shield you financially physical damage to your insured commercial vehicle and take care of your liabilities to third-party. A third-party commercial vehicle insurance policy online will safeguard you from property damage, physical injuries and death of third-party on the roads. 
+                </p>
+              </div>
+            </div>
+            <div fxFlex="100" class="new-car-b">
+              <h3>What Does Commercial Vehicle Insurance Cover?</h3>
+              <p>
+                There is many a commercial vehicle insurance company which offers commercial vehicle insurance policy. You can have the coverage of your commercial vehicle insurance online policy tailor-made as per your requirements. A comprehensive commercial vehicle insurance online policy offers the following coverage. 
+              </p>
+              <ul class="list">
+                <li>
+                  The third-party coverage of commercial vehicle insurance policy online offers coverage against damage to the other vehicle that gets involved in an accident with your insured commercial vehicle. The third-party coverage of commercial vehicle insurance policy online also offers coverage against physical injury or death of third party.
+                </li>
+                <li>
+                      Many a commercial vehicle insurance company offers towing coverage for mechanically propelled disabled commercial vehicles. Many a commercial vehicle insurance company offers towing coverage as add-on coverage. The towing coverage is also included in the regular coverage of comprehensive commercial vehicle insurance policies online. 
+                </li>
+                <li>
+                  A comprehensive commercial vehicle insurance online policy offers coverage against damages to insured commercial vehicle due to natural disasters like fire, lightning and explosion, flood, storm etc and man-made perils like strike, housebreaking, theft, riot, burglary, terrorist activities. 
+                </li>
+                <li>Personal accident coverage is also available with commercial vehicle insurance policies online. Accidental death and Permanent Total Disability of the owner and the paid driver of the inured commercial vehicle is covered by a commercial vehicle insurance policy online. </li>
+              </ul>
+              <p>The coverage of a comprehensive commercial vehicle insurance policy online, however, varies from one commercial vehicle insurance company to another.</p>
+            </div>
+            <div fxFlex="100" class="new-car-b">
+              <h3>Why Buying Different Commercial Auto Insurance Is Required?</h3>
+              <p>
+                You should update the coverage when you renew commercial vehicle insurance online policy when you hire a new driver or buy more commercial vehicles. When you renew commercial vehicle insurance, you should compare commercial vehicle insurance premium quotes and find a better commercial auto insurance policy that meets your needs.
+              </p>
+              <p>
+                If you buy a new truck, conditions of your commercial truck insurance policy may be altered, so it is vital that you upgrade the coverage when you renew commercial vehicle insurance.
+              </p>
+              <p>
+                A change in the location where you send your delivery vans can have impact your commercial van insurance policies. In case of some obvious changes like change of address you have to inform your commercial vehicle insurance company about the change to ensure uninterrupted coverage and smooth cashless claim process.
+              </p>
+            </div>
+            <div fxFlex="100" class="new-car-b">
+              <h3>Advantages of Buying Commercial Vehicle Insurance Policy after Comparing</h3>
+              <ul class="list">
+                <li>Commercial car insurance plan covers liabilities in the event of injuries and accidents. </li>
+                <li>All types of businesses are vulnerable to adverse situations these days. Vehicles like lorry and bus can be involved in accidents and get damaged or can be stolen as well. If you don’t invest in commercial car insurance cover you have to suffer huge financial loss. This is why you should compare and buy commercial vehicle Insurance and renew commercial vehicle insurance plan on regular basis to keep your business protected financially. </li>
+                <li>Commercial car insurance plan offers monetary compensation in case of such unfortunate incidents. Armed with a commercial car insurance cover, you don’t have to bother with financial setbacks due to liabilities.</li>
+                <li>Most vehicles come with bank loans. With a comprehensive commercial car insurance plan you can cover bank loan even if your vehicle gets stolen or is considered a total loss after a major accident. </li>
+                <li>If you compare and buy commercial vehicle Insurance and renew commercial car insurance cover you will abide by the Motor Vehicles Act </li>
+              </ul>
+              <p>The value of these vehicles is known as IDV in commercial car insurance terms. This IDV is calculated by subtracting the depreciation from the manufacturer's listed selling price. </p>
+              <p>By ensuring to choose the best motor insurance policy for your commercial vehicle you can stay worry free from any damage owing to an unforeseen circumstance such as an accident. </p>
+              <p>The IDV of commercial car insurance plan is the highest amount that policyholders can make cashless claim on the cover of their commercial car insurance plans in case of theft and total loss of the insured vehicle.</p>
+            </div>
+            <div fxFlex="100" class="new-car-b">
+              <h3>Factors That Determine Commercial Vehicle Policy Price</h3>
+              <p>The following are the parameters that help assess the price of commercial car insurance cover.</p>
+              <ul class="list">
+                <li>Type and model of vehicle</li>
+                <li>Fuel type of the vehicle</li>
+                <li>Age of the Vehicle</li>
+                <li>IDV of the vehicle</li>
+                <li>Registration Place of vehicle</li>
+              </ul>
+            </div>
+            <div fxFlex="100" class="new-car-b">
+              <h3>Different Ways to Calculate Commercial Vehicle Insurance Policy in India</h3>
+              <p>There are chiefly two modes to compare and buy commercial vehicle Insurance and renew commercial vehicle insurance in India. You can resort to commercial auto insurance aggregators or website of your preferred commercial vehicle insurance company online. </p>
+              <p>You should not buy commercial vehicle insurance online policies just because of legal requirements. You should rather compare and buy commercial vehicle Insurance and renew commercial vehicle insurance to protect your financial setbacks due to mishaps. Therefore, you should opt for comprehensive commercial auto insurance online in India policies that cover third party damages and own damages. </p>
+              <p>And, you can also compare and buy commercial vehicle Insurance and renew commercial vehicle insurance online through the traditional way. The online commercial vehicle insurance is lot more convenient as you can compare and buy commercial vehicle Insurance and renew commercial vehicle insurance online from your home. </p>
+              <ul class="list">
+                <li>To compare commercial vehicle insurance policies on offer at different commercial vehicle insurance company, you need to know the quote for commercial auto insurance policies.</li>
+                <li>The commercial auto insurance quote plays an instrumental role when it comes to compare commercial vehicle insurance in India. </li>
+                <li>These insurance aggregators offer different types of calculators to compare commercial vehicle insurance policies offered by many a commercial vehicle insurance company.</li>
+                <li>Commercial vehicle insurance premium calculator is one such calculator. It helps you determine commercial auto insurance quote of your commercial vehicle insurance online policy.</li>
+                <li>Every customer differs in terms of requirements and commercial vehicle insurance quote helps them evaluate commercial truck insurance policies and commercial van insurance policies as per their needs. </li>
+                <li>It also helps you understand benefits of commercial auto insurance policies. These benefits are very crucial as they influence the quote of the commercial auto insurance policies too. </li>
+                <li>If there are more benefits in your commercial auto insurance policies, the premium price will be more compared to regular commercial vehicle insurance online policies with compulsory coverage.</li>
+                <li>Commercial vehicle insurance calculator helps you understand structure of your commercial auto insurance policies. Commercial vehicle insurance online policies comprise of three different parts like third party insurance coverage, own vehicle damages and personal accident coverage.</li>
+                <li>The third party insurance coverage is mandatory whereas personal accident coverage is not mandatory to have. Therefore, you are offered these tools to comprehend coverage of online commercial vehicle insurance. </li>
+              </ul>
+              <P>In this perspective, commercial auto insurance will calculate the premium quotes on the basis of the information given by you. Some required things to calculate your commercial vehicle insurance quote include date of registration of your commercial vehicle, details of your commercial vehicle such as make and model and price. You also have to provide additional coverage details like personal accident coverage for your family.</P>
+              <P>To buy commercial vehicle Insurance and renew commercial vehicle insurance online policy can be troublesome because of lack of understanding of commercial auto insurance policies. Even though you research and make comparison tools but sometimes you compare and buy the wrong commercial truck insurance policy without understanding various clauses.</P> 
+            </div>
+          </mat-tab>
+          <mat-tab label="Compare & Buy">
+            <div fxFlex="100" class="new-car-b">
+              <h3>Why It’s Important to Compare Commercial Vehicle Insurance Policy before Buying?</h3>
+              <p>Commercial vehicle insurance online policy offers a wide range of coverage for an array of situations. Several different classes of commercial vehicles are eligible for commercial vehicle insurance online such as private and public carrier goods carrying commercial vehicles, passenger carrying commercial vehicles and special commercial vehicles like excavators, mobile rigs, shovels, tractors, grabs etc. </p>
+              <p>Commercial Vehicles are widely used for various business purposes. These vehicles are used extensively on daily basis and that increases the risk of accidents and damages due to from natural or man-made calamities which lead to financial loss of vehicle owners. This is why they should get a comprehensive commercial car insurance cover.</p>
+              <p>So, on the basis of your type of commercial vehicle you can choose among commercial truck insurance policy online, commercial van insurance policy online or any other type of commercial auto insurance policy online that meets your needs. </p>
+            </div>
+            <div fxFlex="100" class="new-car-b">
+              <h3>How to Compare Commercial Vehicle Insurance Policy Online?</h3>
+              <p>A commercial auto insurance comparison portal has tie-ups with many a commercial vehicle insurance company and can get all commercial auto insurance premium quotes at one place.</p>
+              <p>When you avail commercial truck insurance or commercial van insurance, you can choose from many coverage options. Every commercial vehicle insurance company offers different coverage options and premium quotes, and therefore it is crucial to compare commercial vehicle insurance quote and coverage. However, it is time-consuming to compare commercial auto insurance premium quotes without the help of comparison portals.</p>
+            </div>
+            <div fxFlex="100" class="new-car-b">
+              <h3>A Few Tips to Compare Commercial Vehicle Insurance Quotes</h3>
+              <p>Here are some tips to compare commercial vehicle insurance premium prices, to get the most accurate commercial auto insurance premium quotes and make an informed choice on the best coverage for your commercial vehicle:</p>
+              <ul class="list">
+                <li>If you have a fleet of trucks and vans, you should avail commercial truck insurance or commercial van insurance accordingly. </li>
+                <li>Many a commercial vehicle insurance company offers special discounts on the basis of risk factors. You won't get these discounts if you don’t shop around and stick to one commercial vehicle insurance company.</li>
+                <li>You can record the mileage of your commercial vehicle. How far a commercial vehicle travels per year will affect risk and commercial auto insurance premium quote.</li>
+                <li>You should take measures to improve safety of your driver and commercial vehicle. By reducing the risk of accidents, you can avail best commercial auto insurance premium quotes.</li>
+                <li>You should review driving records of you employees and consider training for any drivers with accidents to get reduced commercial auto insurance premium quotes. </li>
+              </ul>
+            </div>
+            <div fxFlex="100" class="new-car-b">
+              <h3>How to Unearth the Best Commercial Vehicle Insurance Policy for Your Business?</h3>
+              <p>You should review commercial auto insurance premium quotes if you are self-employed too. Your personal car insurance policy won’t offer coverage for your commercial vehicle. </p>
+              <p>If you own a large business with fleets of delivery vans, trucks you need to compare quotes on commercial truck insurance or commercial van insurance. Commercial auto insurance policies will allow you make cashless claims on incidents involving your commercial vehicles. </p>
+              <p>The size of your business is important when it comes to find the best commercial auto insurance. The terms and conditions of your commercial auto insurance policies will depend on the number of commercial vehicles you use, the types of commercial vehicle, and usage of commercial vehicle. For an example, a commercial truck insurance premium quote will be higher than that of a company car.</p>
+            </div>
+            <div fxFlex="100" class="new-car-b">
+              <h3>How to Get the Tailor-made Commercial Auto Insurance Policy?</h3>
+              <p>Commercial auto insurance comparison portals can cater to your commercial auto insurance needs. You can compare commercial vehicle insurance online policies in terms of coverage, benefits and value-added services.  Irrespective of whether you need commercial truck insurance and commercial van insurance policy for your business, these portals can offer you the best commercial auto insurance policies. </p>
+              <p>If you resort to commercial auto insurance comparison portals that collaborate with many a commercial vehicle insurance company you don’t have to spend a lot of time or put in lot of effort to get the best coverage within your budget. You need to consider several factors when you compare and buy a new commercial auto insurance online policy or when you renew commercial vehicle insurance.</p>
+            </div>
+            <div fxFlex="100" class="new-car-b">
+              <h3>Is There Any Add-On Covers Available with Commercial Vehicle Insurance Policy?</h3>
+              <p>You can make additional payment in addition of your regular premium quote to get optional cover when you compare and buy commercial vehicle Insurance and renew commercial car insurance plan. </p>
+              <p>These optional covers enhance the coverage of a commercial car insurance plan. The following are the additional covers that you can avail on renewal of your commercial car insurance plan. </p>
+              <ul class="list">
+                <li>Additional cover for personal accident to owner/driver</li>
+                <li>Additional cover for tyres or tubes, lamps, bonnet, headlights, bumpers and paintwork of damaged part of the insured vehicle</li>
+                <li>Cover for Electrical and Non Electrical parts</li>
+                <li>Additional cover for personal accident to unnamed and named passengers</li>
+                <li>Additional legal liability cover to non-fare paying passengers</li>
+                <li>Additional cover for personal accident to employees and paid driver</li>
+              </ul>
+            </div>  
+          
+          </mat-tab>
+          <mat-tab label="Claim Process"> 
+            <div fxFlex="100" class="new-car-b">
+              <h3>Claim Process of Commercial Car Insurance Policy</h3>
+              <p>When you get in touch with the company to make the cashless claim on your cover you have to provide your policy number. If required, you can also ask for towing facilities or ambulance service if allowed in your cover. Your company will offer you an estimate for repairing.</p>
+              <p>To make claims on your cover, you first have to inform about the vehicle damage at the earliest. Most companies boast free numbers so that you can make claim on your cover over phone. You can also lodge online cashless claims on your plan on the portal of the company. A representative on behalf of the company will offer guidance throughout the cashless claim process.</p>
+              <p>You need to fill the claim form up to register your cashless claim formally on your cover. You also have to attach the license copy of the driver and Registration Certificate of your vehicle be it bus or lorry.</p>
+              <p>While making a cashless or reimbursement claim, you need keep some documents handy. This list varies among the companies so you have to check with the company from where you compare and buy commercial vehicle Insurance and renew commercial vehicle insurance plan. </p>
+              <p>Garages that come under the network of companies offer cashless facility. So, if you visit any such garage you can make the most of cashless claim facility. If you go to any other garage you have to make the payment upfront and file a reimbursement claim later. </p>
+            </div>
+            <div fxFlex="100" class="new-car-b">
+              <h3>What Are the Documents Required for Filing Accidental Damage Claim under Commercial Car Insurance in India?</h3>
+              <p>You have to provide the following documents for speedy accidental damage claim settlement. </p>
+              <ul class="list">
+                <li>Original tax receipt for verification for cashless claim settlement</li>
+                <li>Claim form (Duly filled)</li>
+                <li>Cover Note or Policy copy as proof of insurance</li>
+                <li>Repair bills and payment receipts for cashless claim settlement</li>
+                <li>Estimate for repairing for cashless claim settlement</li>
+                <li>Driving License Copy of the drivers </li>
+                <li>Original driving license for verification for cashless claim settlement</li>
+                <li>Registration Book Copy </li>
+                <li>Any other relevant document asked by the company for cashless claim settlement</li>
+                <li>FIR copy in the event of third-party property damage or death and physical injury</li>
+              </ul>
+            </div>
+            <div fxFlex="100" class="new-car-b">
+              <h3>What Are the Documents Required for Filing Theft Claim under Commercial Car Insurance in India?</h3>
+              <p>You have to submit the following documents for smooth theft claim settlement. </p>
+              <ul class="list">
+                <li>Original Registration Book along with theft endorsement from concerned RTO</li>
+                <li>Original Policy Document and policy number</li>
+                <li>Any other relevant document asked by the company for cashless claim settlement</li>
+                <li>Acknowledged letter copy addressed to RTO with theft intimation for hassle-free cashless claim settlement</li>
+                <li>Original tax receipt for verification for cashless claim settlement</li>
+                <li>Details of Previous Insurance cover</li>
+                <li>Office or company that issued your insurance cover </li>
+                <li>All sets of keys or service booklets or Warranty card</li>
+                <li>FIR copy and final investigation report</li>
+                <li>Period of insurance cover</li>
+              </ul>
+            </div>
+            <div fxFlex="100" class="new-car-b">
+              <h3>How to Check Status of Your Commercial Car Insurance Plan?</h3>
+              <p>You can go online to check the status of your plan. You just have to login with username and password on the home page of the portal of your provider of insurance cover. </p>
+            </div>
+            <div fxFlex="100" class="new-car-b">
+              <h3>How to Make Payment Online for the Price of Your Insurance Cover and What Are the Payment Modes Available?</h3>
+              <p>You can make payment online using credit and debit card or through net banking. Other than online payment, you can also make payment in cash in branches of companies. </p>
+            </div>
+            <div fxFlex="100" class="new-car-b">
+              <h3>How to Cancel Commercial Car Insurance Policy?</h3>
+              <p>You need to submit the documents of your insurance plan along with a surrender form at the nearest branch of your company. If you proceed successfully with the process, your provider of insurance cover will make the payment of refund and will deposit it in your bank account directly and your insurance plan will be deemed cancelled.</p>
+            </div>
+            <div fxFlex="100" class="new-car-b">
+              <h3>How to Renew Commercial Auto Insurance Policy?</h3>
+              <p>You can get renewal of your insurance plan done online on the portal of your company:</p>
+              <ul class="list">
+                <li>To renew commercial vehicle insurance online you must provide current plan details, such as policy number, vehicle registration number, name, e-mail address and contact details. </li>
+                <li>Then you can calculate the quote for renewal. </li>
+                <li>The portal will take you to the payment gateways when you have to make the payment for renewal. </li>
+                <li>Once you make the payment, you will be done with the renewal of your insurance plan.  </li>
+              </ul>
+            </div>  
+          </mat-tab>
+        </mat-tab-group>
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              Commercial Vehicle Insurance Policy Coverage
+            </mat-expansion-panel-header>
+            <p>The following are the incidents that a commercial car insurance plan does cover.</p>
+            <ul class="list">
+              <li>A comprehensive commercial car insurance plan does cover damages to the insured vehicles due to natural calamities such as fire, lightning, explosion, flood, earthquake, storm and or man-made perils like terrorism, riot, strike and malicious act.</li>
+              <li>A commercial car insurance plan covers the cost of treatment due to injuries to the driver The personal accident cover can also be extended for an additional quote to other occupants in the insured car.</li>
+              <li>Third party liability cover of a commercial car insurance plan compensates for property damage and accidental physical injury and death of the third party. </li>
+              <li>In case of theft and total loss of the insured vehicle due to accidents, a commercial car insurance plan offers full compensation.</li>
+            </ul>
+          </mat-expansion-panel>
+        
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              How to Get the Best Commercial Vehicle Insurance for Your Business?
+            </mat-expansion-panel-header>
+            <p>If you own commercial vehicle, you should look to compare and buy commercial auto insurance policy online. If you already have one, you should compare commercial vehicle insurance when you have to renew commercial vehicle insurance policy online. </p>
+            <p>Finding the right commercial auto insurance or commercial truck insurance policies can be tricky. Quotes for commercial vehicle insurance do vary from one commercial vehicle insurance company to another. The quote difference of commercial truck insurance or commercial van insurance is something you need to consider when you compare and buy commercial vehicle insurance online policies. </p>
+            <p>Regardless of whether you have commercial truck insurance or commercial van insurance, you should compare commercial vehicle insurance plans and to get the best one on your renewal. You should also compare commercial vehicle insurance companies to check their offers and see if your commercial vehicle insurance company offers the same benefits or not. </p>
+            <p>It is imperative to compare commercial auto insurance premium quotes from multiple commercial vehicle insurance companies to find the best commercial auto insurance policy. </p>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              Commercial Vehicle Insurance Policy Exclusions
+            </mat-expansion-panel-header>
+            <p>Not all types of damages and situations are covered by comprehensive commercial vehicle insurance policies online. A commercial vehicle insurance company imposes some exclusion when it comes to the coverage of a comprehensive commercial vehicle insurance policy online. </p>
+            <ul class="list">
+              <li>Wear and tear and mechanical and electrical breakdown of the commercial vehicle is not included in the coverage of commercial vehicle insurance online policies</li>
+              <li>A commercial vehicle insurance company doesn’t cover the loss if the commercial vehicle is used beyond the limitations. </li>
+              <li>If the commercial vehicle is used beyond the specified geographical area coverage of commercial vehicle insurance policies online is not available</li>
+              <li>A commercial vehicle insurance company offers coverage against only the original damage and not any consequential or subsequent loss</li>
+              <li>A commercial vehicle insurance policy online doesn’t offer coverage losses due to ionizing radiation, nuclear perils and war</li>
+              <li>A commercial vehicle insurance company doesn’t cover claims due to of contractual liability</li>
+            </ul>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              Why Choose GIBL.IN to Buy or Renew Policies for Goods Carrying Vehicles?
+            </mat-expansion-panel-header>
+            <ul class="list">
+              <li>At GIBL.IN, you can get best quotes of policies for bus, lorry from all companies in India. GIBL.IN offers the best quotes of each commercial vehicle insurance company. You can compare commercial vehicle insurance quotes effortlessly on GIBL.IN.</li>
+              <li>If you have goods carrying vehicle like lorry you can get hefty discount on OD quotes.</li>
+              <li>We process various types of commercial van insurance policies. You can compare commercial vehicle insurance price and buy commercial vehicle Insurance and renew commercial vehicle insurance policies. If your existing plan for bus or lorry gets expired you can also get a fresh plan.</li>
+              <li>When you compare commercial vehicle insurance in terms of price and features, you can choose among the best companies. Then, you can compare and buy commercial vehicle Insurance and renew commercial vehicle insurance plan online. We accept online payment through credit and debit cards and through online bank transfer.</li>
+              <li>You just have to send documents of your bus or lorry cover and we will submit your documents, coordinate with Commercial Vehicle Company and issue your commercial car insurance or commercial van insurance plan at the earliest.</li>
+              <li>If you want to switch your current provider of insurance cover, we will let you choose among other companies.</li>
+            </ul>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              Steps to Get The Best Commercial Vehicle Insurance Quotes?
+            </mat-expansion-panel-header>
+            <ul class="list">
+              <li>You can hire experienced drivers to get the best commercial auto insurance premium quotes</li>
+              <li>You can choose sensible commercial vehicle to get the best commercial auto insurance premium quotes</li>
+              <li>If you install safety devices in your commercial vehicle, you can have minimized commercial auto insurance premium quote</li>
+              <li>You can compare commercial vehicle insurance to get reduced commercial auto insurance premium quote </li>
+            </ul>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              Why Choose GIBL.IN to Buy or Renew Policy for Passengers Carrying Vehicles?
+            </mat-expansion-panel-header>
+            <ul class="list">
+              <li>At GIBL.IN, you have to pay the same price or the quote will be less than buying from companies directly.</li>
+              <li>You can compare commercial vehicle insurance price and benefits on offer at several different companies at one place.</li>
+              <li>When you compare commercial vehicle insurance in terms of price and features, you can choose among the best companies. Then, you can compare and buy commercial vehicle Insurance and renew commercial vehicle insurance plan online. We accept online payment through credit and debit cards and through online bank transfer.</li>
+              <li>GIBL.IN offers neutral comparison facility without being biased to any specific company.</li>
+              <li>Insurance cover for all types of passenger carrying vehicles like auto, bus is available with us</li>
+              <li>At GIBL.IN, you can get best quote from all companies in India. Best price of commercial insurance cover from all companies is available with us.</li>
+              <li>You just have to send documents of your bus or lorry cover and we will submit your documents, coordinate with the commercial vehicle company and issue your commercial car insurance or commercial van insurance plan at the earliest.</li>
+              <li>If you want to switch your current provider of insurance cover, we will let you choose among other companies.</li>
+              <li>If you purchase insurance cover from GIBL.IN, you can also avail cashless claim assistance.</li>
+            </ul>
+            <p>We offer end-to-end service and ensure that you get your insurance cover right on time when you compare and buy or on your renewal. The plan we offer is the least expensive one as we offer the maximum possible discount. Visit GIBL.IN today and get the best plan to cover losses of your commercial vehicle such as bus or lorry.</p>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container_bg">
+	<div class="container">
+		<p class="upper_footer_txt">Join Our network &amp; earn unlimited per month</p>
+		<div style="margin:auto; width:75%" fxflex.xs="100%" id="visitor">
+			<form id="new-form-label" class="footer_form example-container" fxLayout="row"   fxLayout.xs="column"  fxflex="100" [formGroup]="prospectForm" (ngSubmit)="prospectSubmit()">
+			<div fxflex="33" id="new-form" fxflex.xs="100">
+			  <mat-form-field appearance="legacy">
+				<mat-icon matSuffix>account_circle</mat-icon>
+				<mat-label>Your Name</mat-label>
+				<input formControlName="prospectName" matInput placeholder="Name">
+				<mat-hint></mat-hint>
+			  </mat-form-field>
+			</div>
+			<div fxflex="33">
+			  <mat-form-field appearance="legacy">
+				<mat-icon matSuffix>stay_primary_portrait</mat-icon>
+				<mat-label>Your Mobile Number</mat-label>
+      <input formControlName="prospectPhone" maxlength="10" type="text" matInput placeholder="Please Enter Your Mobile Number" (input)="checkLength($event.target.value,10)">
+				<mat-hint></mat-hint>
+			  </mat-form-field>
+			</div>
+			<div fxflex="33">
+			  <mat-form-field appearance="legacy">
+				<mat-icon matSuffix>mail_outline</mat-icon>
+				<mat-label>Your Email Id</mat-label>
+				<input formControlName="prospectEmail" matInput placeholder="Email-ID">
+				<mat-hint></mat-hint>
+			  </mat-form-field>
+			</div>
+			<div fxflex="10">
+				<button mat-raised-button color="primary">Submit</button>
+      </div>
+
+    </form>
+     
+      <!-- <p>We will contact soon.</p> -->
+    </div>
+   
+	</div>
+</div>

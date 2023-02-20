@@ -1,0 +1,142 @@
+<header>
+   <div fxFlexFill style="background: #055ba9;">
+      <div fxLayout="row" class="container">
+         <mat-toolbar color="primary">
+            <header fxFlexFill fxFlex.lt-sm="100%">
+               <div fxLayoutAlign="left" fxFlex="20" class="one" (click)="homepage()">
+                  <img src="https://www.gibl.in/UI/assets/quote/images/logo.png" alt="logo" height="67">
+                  <span fxLayoutAlign="right" style="padding-left: 10px;"> CAR INSURANCE </span>
+               </div>
+               <div fxFlex fxLayout fxFlex="80" fxLayoutAlign="flex-end" style="float: right;" fxFlex="85" fxShow.gt-sm>
+                  <div fxLayout="row" fxLayout.xs="column" fxShow.gt-sm>
+                     <button fxShow.gt-sm mat-button>email: info@gibl.in</button>
+                     <button fxShow.gt-sm mat-button>Ph: +91 6289901320</button>
+                  </div>
+               </div>
+               <ng-template #moo3>
+                  <mat-dialog-actions>
+                     <div fxLayout="row" fxFlex="100">
+                        <button mat-button [matMenuTriggerFor]="menu">Support</button>
+                        <button mat-button (click)="openDialog(moo3)">Login</button>
+                        <button mat-button [matMenuTriggerFor]="menu">Register</button>
+                     </div>
+                  </mat-dialog-actions>
+               </ng-template>
+            </header>
+         </mat-toolbar>
+      </div>
+   </div>
+</header>
+<div class="container" style="background: #fff;">
+   <div class="container" fxFlexLayout="row">
+      <div *ngIf="showPremiumdata" fxFlex.xs="45" fxFlex="17">
+         <img src="assets/company_logo/{{COMPANY_LOGO}}">
+      </div>
+      <div fxFlex="55" fxFlex.xs="100">
+         <span class="name-comp">{{COMPANY_NAME}}</span>
+      </div>
+      <div fxFlex="10" style="text-align:right;">
+         <mat-icon>print</mat-icon>
+      </div>
+   </div>	
+   <div class="container">
+      <small>Dear {{OWNER_NAME}},</small>
+      <p *ngIf="paymentStatus==1"> Your {{COMPANY_NAME}} Car Policy request has been generated successfully issued. <a href="https://reverse.rapipay.com/RapInsurance/redirectToPage?status=success&urc={{user_code}}" *ngIf="parent_user_code=='112949'" style="color: #fc5846;"> Back to Home</a></p>
+      <p *ngIf="paymentStatus!=1"> Your {{COMPANY_NAME}} Car Policy request has been failed. <a href="https://reverse.rapipay.com/RapInsurance/redirectToPage?status=paymentFail&urc={{user_code}}" *ngIf="parent_user_code=='112949'" style="color: #fc5846;"> Back to Home</a></p>
+		<p class="text-center" *ngIf="IS_LIVE!=2 && paymentStatus==1 && !policyDownloadLoader">
+			 <button (click)="downloadPolicy(providerId)" download mat-raised-button color="primary"><i
+				class="material-icons">
+			 arrow_downward
+			 </i>Download your Policy Copy
+			 </button> 
+		</p>
+      <p class="text-center" *ngIf="IS_LIVE==2 && paymentStatus==1 && !policyDownloadLoader && providerId==7">
+          <button (click)="downloadPolicy(providerId)" download mat-raised-button color="primary"><i
+            class="material-icons">
+          arrow_downward
+          </i>Download your Policy Copy
+          </button> 
+      </p>
+		<p class="text-center" *ngIf="IS_LIVE==2 && paymentStatus==1 && !policyDownloadLoader && providerId!=7">
+			 <a href="https://www.gibl.in/two-wheeler-insurance/payment/policy_copy_cron/crm_download_policy.php?insurer_id={{providerId}}&policy_no={{policyNo}}" download mat-raised-button color="primary"><i
+				class="material-icons">
+			 arrow_downward
+			 </i>Download your Policy Copy
+			 </a> 
+		</p>
+		<div *ngIf="policyDownloadLoader">
+			<div class="mat-button-wrapper loader-wrap confirm-loader">
+				<div class="loader" >Loading...</div>
+			</div>
+		</div>
+      <p *ngIf="paymentStatus==1">Please send us your RC Copy and Previous Insurance Copy at 
+         <a target="_top" href="mailto:support@gibl.in">support@gibl.in</a>
+         for future reference. In case of any questions or concerns,
+         please feel free to contact us at +91 6289901320.
+         Thank you for choosing GIBL.IN for your insurance needs.
+      </p>
+      <div style="background: #fff; width:100%;">
+         <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+               <div>
+                  <h6 class="my-0">Order No</h6>
+               </div>
+               <span class="text-muted">{{proposalNo}}</span>
+            </li>            
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+               <div>
+                  <h6 class="my-0">Transaction No</h6>
+               </div>
+               <span class="text-muted">{{transactionNo}}</span>
+            </li>
+			<li class="list-group-item d-flex justify-content-between lh-condensed">
+               <div>
+                  <h6 class="my-0">Policy No</h6>
+               </div>
+               <span class="text-muted">{{policyNo}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between bg-light">
+               <div class="text-success">
+                  <h6 class="my-0" style="color: green; font-size:14px;">Transaction Amount</h6>
+               </div>
+               <span class="text-success" style="color: green;font-size:16px;">{{TOTAL_PREMIUM | currency:'Rs.' : 'symbol' : '1.0'}}</span>
+            </li>
+         </ul>
+      </div>
+      
+      <p style="padding:15px; text-align:center; color: red;">
+         Do NOT PRESS BACK BUTTON  for any further transactions. Close the current window and open a new insurance landing page from your retailar dashboard if you want to purchase another policy.
+      </p>
+      <p style="padding:15px;">
+         Call us on 033-66044788 for any assistance on your policy and we will be happy to help
+         more than 4 million policies issued and over 250K claims settled annually
+      </p>
+		<p class="text-center">
+			<a href="{{ apiService?.bannerData?.banner_link }}">
+				<img style="width:100%" src="{{ apiService?.bannerData?.banner_image }}" alt="">
+			</a>
+		</p>
+   </div>
+   <div class="container" id="icon" fxFlexLayout="row">
+      <div fxFlex="33">
+         <img src="assets/quote/img/travel.jpg" alt="logo" height="44">
+         <a style="text-decoration:none" href="https://www.gibl.in/travel-insurance/">
+         <span> Travel Insurance</span>         
+         </a>
+      </div>
+      <div fxFlex="33">
+         <img src="assets/quote/img/heath.jpg" alt="logo" height="44">
+         <a style="text-decoration:none" href="https://www.gibl.in/health-insurance/">
+         <span>Health Insurance</span>
+         </a>
+      </div>
+      <div fxFlex="33">
+         <img src="assets/quote/img/home.jpg" alt="logo" height="44">
+         <a style="text-decoration:none" href="https://www.gibl.in/home-insurance/">
+         <span>Home Insurance</span>
+         </a>
+      </div>
+   </div>
+   <div style="background: #fff; width:100%;">
+   </div>
+</div>

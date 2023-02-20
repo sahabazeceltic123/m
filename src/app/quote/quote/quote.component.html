@@ -1,0 +1,1571 @@
+<div  class="quoteBodyBackground" [style.background]="'url(assets/quote/img/city.jpg)'">
+   <header>
+      <div fxFlexFill [ngStyle]="{'background-color': (user_code=='0')?'transparent':((user_code=='150855') ? '#0EA4FF' : '#055ba9')}">
+         <div fxLayout="row" class="container">
+            <mat-toolbar color="primary">
+               <header fxFlexFill fxFlex.lt-sm="50%" >
+                  <div style="cursor: pointer;" *ngIf="showlogo" fxLayoutAlign="left" fxFlex="20" class="one">
+                     <img *ngIf="white_label==0" (click)="homepage()" src="https://www.gibl.in/UI/assets/quote/images/logo.png" alt="logo" height="67">
+                     <span fxLayoutAlign="right"> CAR INSURANCE </span>
+                     <!--<div fxLayout="row" fxShow>
+                        <button (click)="homepage()" *ngIf="white_label!=0" fxShow mat-button>HOME</button>
+                        </div>-->
+                  </div>
+                  <div fxFlex fxLayout fxLayoutAlign="flex-end" fxFlex="85" fxHide fxShow.gt-sm style="margin-top: 5px;">
+                     <div fxLayout="row" fxHide fxShow.gt-sm  *ngIf="white_label==0">
+                        <button fxHide fxShow.gt-sm mat-button [matMenuTriggerFor]="life">
+                          Life Insurance
+                           <mat-icon fxLayoutalign="right" aria-hidden="false" aria-label="Example keyboard_arrow_down icon">
+                              keyboard_arrow_down
+                           </mat-icon>
+                        </button>
+                        <button fxHide fxShow.gt-sm mat-button [matMenuTriggerFor]="menu">
+                           Insurance Type
+                           <mat-icon fxLayoutalign="right" aria-hidden="false" aria-label="Example keyboard_arrow_down icon">
+                              keyboard_arrow_down
+                           </mat-icon>
+                        </button>
+                        <button fxHide fxShow.gt-sm mat-button [matMenuTriggerFor]="menuCom">
+                           Insurance Company
+                           <mat-icon fxLayoutalign="right" aria-hidden="false" aria-label="Example keyboard_arrow_down icon">
+                              keyboard_arrow_down
+                           </mat-icon>
+                        </button>
+                        <button (click)="supportLink()" fxHide fxShow.gt-sm mat-button>Support</button>
+                        <!-- <button fxHide fxShow.gt-sm mat-button *ngIf="!isLoggedIn" (click)="openDialogLongin()">
+                           LOGIN
+                           </button> -->
+                        <button fxHide fxShow.gt-sm mat-button *ngIf="!isLoggedIn"  Style="color: #fff!important;
+                        background: #fb542f;
+                        border-radius: 5px;
+                        font-size: 11px;
+                        padding: 9px 10px 10px;
+                        margin-right: 5px;
+                        ">
+                        <a href="https://www.gibl.in/login.php" mat-button>Partner Login</a>
+                        </button>
+                        <button fxHide fxShow.gt-sm mat-button *ngIf="isLoggedIn"  Style="color: #fff!important;background: #fb542f;border-radius: 5px;font-size: 11px;padding:9px 10px 10px; margin-right:5px;">
+                        <a href="https://www.gibl.in/logout.php" mat-button>
+                        {{'Logout'  }}
+                        </a>
+                        </button>
+                        <button fxHide fxShow.gt-sm mat-button *ngIf="!isLoggedIn" (click)="registrationPage()"  Style="color: #fff!important;background: #fb542f;border-radius: 5px;font-size: 11px;padding:9px 10px 10px; margin-right:5px;">
+                        <a href="https://www.gibl.in/pos/" mat-button>{{'Partner Registration'}}</a>
+                        </button>
+                     </div>
+                  </div>
+                  <a class="nav-mob" fxHide *ngIf="white_label==0" (click)="openDialog()" area-label="storage"><i class="material-icons">
+                  storage
+                  </i>
+                  </a>
+                  <ng-template #moo3>
+                     <mat-dialog-actions >
+                        <div fxLayout="row" fxFlex="100" *ngIf="white_label==0">
+                           <button mat-button [matMenuTriggerFor]="menu">
+                              Insurance Type
+                              <mat-icon fxLayoutalign="right" aria-hidden="false" aria-label="Example keyboard_arrow_down icon">
+                                 keyboard_arrow_down
+                              </mat-icon>
+                           </button>
+                           <button mat-button [matMenuTriggerFor]="menuCom">
+                              Insurance Company
+                              <mat-icon fxLayoutalign="right" aria-hidden="false" aria-label="Example keyboard_arrow_down icon">
+                                 keyboard_arrow_down
+                              </mat-icon>
+                           </button>
+                           <button mat-button [matMenuTriggerFor]="menu" >Support</button>
+                           <button mat-button *ngIf="!isLoggedIn">
+                           <a href="https://www.gibl.in/login.php" mat-button>Login</a>
+                           </button>
+                           <button mat-button (click)="logout()" *ngIf="isLoggedIn">Logout</button>
+                           <button mat-button [matMenuTriggerFor]="menu" *ngIf="!isLoggedIn">Register</button>
+                        </div>
+                     </mat-dialog-actions>
+                  </ng-template>
+               </header>
+            </mat-toolbar>
+         </div>
+      </div>
+   </header>
+   <mat-menu x-position="before" #life="matMenu">
+      <button mat-menu-item><a href="https://www.gibl.in/life-insurance/life-insurance-plans/term-plans/">Term Insurance</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/life-insurance/life-insurance-plans/retirement-plans/">Retirement  Plans</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/life-insurance/life-insurance-plans/child-plans/">Child Plans</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/life-insurance/life-insurance-plans/ulip-plans/">ULIPS</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/life-insurance/life-insurance-plans/group-plans/">Group Plans</a></button>
+   </mat-menu>
+   <mat-menu x-position="before" #menu="matMenu">
+      <button mat-menu-item><a href="https://www.gibl.in/car-insurance/">Car Insurance</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/health-insurance/">Health Insurance</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/two-wheeler-insurance/">Two Wheeler Insurance</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/travel-insurance/">Travel Insurance</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/personal-accident-insurance/">Personal Accident
+      Insurance</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/home-insurance/">Home Insurance</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/commercial-vehicle-insurance/">Commercial Vehicle
+      Insurance</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/life-insurance/">Life Insurance</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/health-insurance/critical-illness-insurance/">Critical Illness
+      Insurance</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/gadget-insurance/">Gadget Insurance</a></button>
+   </mat-menu>
+   <mat-menu x-position="before" #menuCom="matMenu">
+      <button mat-menu-item><a href="https://www.gibl.in/national-insurance/">National Insurance</a></button>
+      <button mat-menu-item><a href="https://www.gibl.in/new-india-assurance/">New India Assurance</a></button>
+      <button mat-menu-item><a  href="https://www.gibl.in/united-india-insurance-uiic/">United India Insurance</a></button>
+      <button mat-menu-item><a  href="https://www.gibl.in/hdfc-ergo-insurance/">HDFC ERGO General Insurance</a></button>
+      <button mat-menu-item><a  href="https://www.gibl.in/star-health-insurance/">Star Health Insurance</a></button>
+      <button mat-menu-item><a  href="https://www.gibl.in/oriental-insurance/">Oriental Insurance</a></button>
+      <button mat-menu-item><a  href="https://www.gibl.in/bajaj-allianz-insurance/">Bajaj Allianz General Insurance</a></button>
+      <button mat-menu-item><a  href="https://www.gibl.in/iffco-tokio-insurance/">Iffco Tokio General Insurance</a></button>
+      <button mat-menu-item><a  href="https://www.gibl.in/sbi-general-insurance/">SBI General Insurance</a></button>
+      <button mat-menu-item><a  href="https://www.gibl.in/max-bupa-insurance/">MaxBupa Health insurance</a></button>
+      <button mat-menu-item><a  href="https://www.gibl.in/apollo-munich-insurance/">Apollo Munich Health Insurance</a></button>
+      <button mat-menu-item><a  href="https://www.gibl.in/bharti-axa-insurance/">Bharti AXA General Insurance</a></button>
+      <button mat-menu-item><a  href="https://www.gibl.in/tata-aig-insurance/">Tata AIG Greneral Insurance</a></button>
+      <button mat-menu-item><a  href="https://www.gibl.in/universal-sompo-insurance/">Universal Sompo General Insurance </a></button>
+   </mat-menu>
+
+   <div class="containerX" >
+      <div class="container" fxLayout fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign="left" fxLayoutGap=""
+         fxLayoutGap.xs="0">
+         <div class="item item-2" *ngIf="makeActive" fxFlex="50%" fxFlex.lt-md="100%" fxFlexOrder="1">
+            <h1 style="font-weight: bold;">Car Insurance</h1>
+            <!-- <h3 class="hidden-xs" [ngClass.lt-md]="{'mob-txt':true}">Compare Quotes from 25+ Car Insurance Companies in India</h3>
+               <h4 [ngClass.lt-md]="{'mob-txt':true}">A great rate is just a few clicks away!</h4> -->
+            <p [ngClass.lt-md]="{'mob-txt':true}" style="font-size: 20px !important;
+               text-align: left;
+               color: #000;
+               margin-top: 15px;
+               font-weight: bold;">Compare Quotes from 25+ Car Insurance Companies in India</p>
+            <p [ngClass.lt-md]="{'mob-txt':true}" style="font-size: 20px !important;
+               text-align: left;
+               color: #000;
+               margin-top: 8px;
+               font-weight: bold;">A great rate is just a few clicks away!</p>
+            <p *ngIf="form_premium_type==1" class="motor_banner_p" fxHide="true" fxShow.gt-sm>Renew your car insurance policy in less than 2 minutes with GIBL<br>Please select the brand of your car to begin.</p>
+            <p *ngIf="form_premium_type==0" class="motor_banner_p" fxHide="true" fxShow.gt-sm>Congratulations on your new car! Let us find you the best insurance quotes.</p>
+            <form class="example-container" [formGroup]="quoteForm">
+               <div class="pdding-bottom-1">
+                  <mat-radio-group formControlName="isRenewal">
+                     <div *ngIf="IS_LIVE==0 || IS_LIVE==1">
+                        <mat-radio-button (click)="isNewCar(0)" value="0" [checked]="form_premium_type==0">I've bought a new Car</mat-radio-button>
+                        <mat-radio-button (click)="isNewCar(1)" value="1" [checked]="form_premium_type==1">Renewal</mat-radio-button>
+                     </div>
+                     <div *ngIf="IS_LIVE==2">
+                        <mat-radio-button (click)="isNewCar(0)" value="0" [checked]="form_premium_type==0">I've bought a new Car</mat-radio-button>
+                        <mat-radio-button (click)="isNewCar(1)" value="1" [checked]="form_premium_type==1">Renewal</mat-radio-button>
+                     </div>
+                  </mat-radio-group>
+               </div>
+            </form>
+         </div>
+         <div class="item item-3" *ngIf="modelActive" fxFlex="50%" fxFlex.lt-md="100%" fxFlexOrder="1">
+            <!-- <h3 [ngClass.lt-md]="{'mob-txt':true}">Compare Quotes from 25+ Car Insurance Companies in India</h3>
+               <h4 [ngClass.lt-md]="{'mob-txt':true}">A great rate is just a few clicks away!</h4> -->
+            <p [ngClass.lt-md]="{'mob-txt':true}" style="font-size: 20px !important;
+               text-align: left;
+               color: #000;
+               margin-top: 15px;
+               font-weight: bold;">Compare Quotes from 25+ Car Insurance Companies in India</p>
+            <p [ngClass.lt-md]="{'mob-txt':true}" style="font-size: 20px !important;
+               text-align: left;
+               color: #000;
+               margin-top: 8px;
+               font-weight: bold;">A great rate is just a few clicks away!</p>
+            <p class="motor_banner_p" fxHide="true" fxShow.gt-sm > Your choosing of the right car model will help us find the right coverage for you
+            </p>
+         </div>
+         <div class="item item-4" *ngIf="fuelActive" fxFlex="50%" fxFlexOrder="1">
+            <!-- <h3 [ngClass.lt-md]="{'mob-txt':true}">Compare Quotes from 25+ Car Insurance Companies in India</h3>
+               <h4 [ngClass.lt-md]="{'mob-txt':true}">A great rate is just a few clicks away!</h4> -->
+            <p [ngClass.lt-md]="{'mob-txt':true}" style="font-size: 20px !important;
+               text-align: left;
+               color: #000;
+               margin-top: 15px;
+               font-weight: bold;">Compare Quotes from 25+ Car Insurance Companies in India</p>
+            <p [ngClass.lt-md]="{'mob-txt':true}" style="font-size: 20px !important;
+               text-align: left;
+               color: #000;
+               margin-top: 8px;
+               font-weight: bold;">A great rate is just a few clicks away!</p>
+            <p class="motor_banner_p" fxHide="true" fxShow.gt-sm>
+               Now tell us what type of fuel your car engine uses
+            </p>
+         </div>
+         <div class="item item-5" *ngIf="variantActive" fxFlex="50%" fxFlex.lt-md="100%" fxFlexOrder="1">
+            <!-- <h3 [ngClass.lt-md]="{'mob-txt':true}">Compare Quotes from 25+ Car Insurance Companies in India</h3>
+               <h4 [ngClass.lt-md]="{'mob-txt':true}">A great rate is just a few clicks away!</h4> -->
+            <p [ngClass.lt-md]="{'mob-txt':true}" style="font-size: 20px !important;
+               text-align: left;
+               color: #000;
+               margin-top: 15px;
+               font-weight: bold;">Compare Quotes from 25+ Car Insurance Companies in India</p>
+            <p [ngClass.lt-md]="{'mob-txt':true}" style="font-size: 20px !important;
+               text-align: left;
+               color: #000;
+               margin-top: 8px;
+               font-weight: bold;">A great rate is just a few clicks away!</p>
+            <p class="motor_banner_p" fxHide="true" fxShow.gt-sm>
+               Choose the correct variant of your car from the list.<br>
+               You can manually type your car’s variant if it’s not visible in the list.
+            </p>
+         </div>
+         <div class="item item-6" *ngIf="registrationActive" fxFlex="50%" fxFlex.lt-md="100%" fxFlexOrder="1">
+            <!-- <h3 [ngClass.lt-md]="{'mob-txt':true}">Compare Quotes from 25+ Car Insurance Companies in India</h3>
+               <h4 [ngClass.lt-md]="{'mob-txt':true}">A great rate is just a few clicks away!</h4> -->
+            <p [ngClass.lt-md]="{'mob-txt':true}" style="font-size: 20px !important;
+               text-align: left;
+               color: #000;
+               margin-top: 15px;
+               font-weight: bold;">Compare Quotes from 25+ Car Insurance Companies in India</p>
+            <p [ngClass.lt-md]="{'mob-txt':true}" style="font-size: 20px !important;
+               text-align: left;
+               color: #000;
+               margin-top: 8px;
+               font-weight: bold;">A great rate is just a few clicks away!</p>
+            <p class="motor_banner_p" fxHide="true" fxShow.gt-sm>The city or town that your car is registered in can affect the amount of car insurance premium. Make sure you select the right RTO from the list.
+            </p>
+         </div>
+         <div class="item item-7" *ngIf="contactActive" fxFlex="50%" fxFlex.lt-md="100%" fxFlexOrder="1">
+            <!-- <h3 [ngClass.lt-md]="{'mob-txt':true}">Compare Quotes from 25+ Car Insurance Companies in India</h3>
+               <h4 [ngClass.lt-md]="{'mob-txt':true}">One last step!</h4> -->
+            <p [ngClass.lt-md]="{'mob-txt':true}" style="font-size: 20px !important;
+               text-align: left;
+               color: #000;
+               margin-top: 15px;
+               font-weight: bold;">Compare Quotes from 25+ Car Insurance Companies in India</p>
+            <p [ngClass.lt-md]="{'mob-txt':true}" style="font-size: 20px !important;
+               text-align: left;
+               color: #000;
+               margin-top: 8px;
+               font-weight: bold;">One last step!</p>
+            <p class="motor_banner_p" fxHide="true" fxShow.gt-sm>Providing the correct details is very important. It will help us to fetch you customized car insurance quotes.</p>
+         </div>
+         <mat-horizontal-stepper fxFlexOrder="1" fxFlex="50%" style="width: 100%"
+         (selectionChange)="selectionChange($event)" [linear]="isLinear" #stepper>
+         <mat-step [stepControl]="brandFormGroup">
+            <div class="topic">
+               <!-- <h1>What's the brand of your car?</h1> -->
+               <p style="font-size:16px !important;margin-top:4px;font-family:'Avenir-Book' !important;display:block;font-weight:bold;">What's the brand of your car?</p>
+            </div>
+            <div fxLayout="row" style="height: 80px;" fxLayoutAlign="center center"
+               *ngIf="jsonLoader">
+               <div id="registration-loader" style="text-align:center">
+                  <div class="loader">Loading...</div>
+               </div>
+            </div>
+            <form [formGroup]="brandFormGroup">
+               <ng-template matStepLabel matTabContent>
+                  <span [ngClass]="{'mat-step-label-selected-color':selectedStepperIndex!=1}"
+                  [ngClass.lt-md]="{'hideme':true}" *ngIf="brandName?.length>12;else brandNameTooltip"
+                  matTooltipClass="example-tooltip-red" matTooltip="{{brandName}}" [matTooltipPosition]="'above'"
+                  class="example-button">{{brandName|slice:0:12}}..</span>
+                  <ng-template #brandNameTooltip>
+                     <div [ngClass]="{'mat-step-label-selected-color':selectedStepperIndex!=1}">{{brandName}}</div>
+                  </ng-template>
+               </ng-template>
+               <div fxFlex="100%" fxFlexFill *ngIf="!jsonLoader">
+                  <ng-select style="margin-top: 50px;padding-right: 10x;font-size: 13px;text-align: left;"
+                  [virtualScroll]=true [items]="totalBrandList" bindLabel="name" (change)="brandChanged($event.id);track_button('create-brand-btn')"
+                  dropdownPosition="bottom" [appendTo]="'body'" placeholder="Not in the list? Find your car's brand here">
+                  </ng-select>
+               </div>
+            </form>
+            <div class="good-make" id="top-brand" style="margin-top:23px" *ngIf="!jsonLoader">
+               <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="center">
+                  <ng-container *ngFor="let item of topBrandList">
+                     <div class="img-wrap"
+                        fxFlex="0 1 calc(20.3% - 5px)" fxFlex.lt-md="0 1 calc(40% - 10x)" fxLayout.lt-sm="row"
+                        fxFlex.xs="30%" fxLayout.xs="column" fxLayout.sm="50%" fxLayout.md="50%" >
+                        <a class="good-make-wrap" (click)="move(2);makeTapped(item.brand_name,item.brand_code,'',item.id);track_button('create-brand-btn')" href="JavaScript:void(0);" [ngClass]="{'is-selected':item.brand_code === form_brand}">
+                        <div class="good-make-wrap" >
+                           <img mat-card-image src='assets/quote/logo/{{item.brand_logo}}' alt='{{item.brand_name}}'>
+                           <div class="brand-name">{{item.brand_name}}</div>
+                        </div>
+                        </a>
+                     </div>
+                  </ng-container>
+               </div>
+            </div>
+         </mat-step>
+         <mat-step [stepControl]="modelFormGroup" [editable]="isEditable">
+         <a href="JavaScript:void(0);" (click)="goBackward()" area-label="back">
+            <mat-icon aria-hidden="false" aria-label="Example keyboard_arrow_left icon">keyboard_arrow_left</mat-icon>
+         </a>
+         <div class="topic">
+            <!-- <h1>What is your car’s model?</h1> -->
+            <p style="font-size:16px !important;margin-top:4px;font-family:'Avenir-Book' !important;display:block;font-weight:bold;">What is your car’s model?</p>
+         </div>
+         <form [formGroup]="modelFormGroup">
+            <ng-template matStepLabel matTabContent>
+               <span [ngClass.lt-md]="{'hideme':true}" *ngIf="modelName.length>12;else modelNameTooltip"
+               matTooltipClass="example-tooltip-red" matTooltip="{{modelName}}" [matTooltipPosition]="'above'"
+               class="example-button">{{modelName| slice:0:12}}..</span>
+               <ng-template #modelNameTooltip>
+                  <div>{{modelName}}</div>
+               </ng-template>
+            </ng-template>
+            <div fxFlex="100%" fxFlexFill>
+               <ng-select #modelSelect style="margin-top: 50px;padding-right: 10x;font-size: 13px;text-align: left;"
+               [virtualScroll]=true [items]="totalModelList" bindLabel="name"
+               (change)="modelTapped($event.model_name,$event.model_code);track_button('create-model-btn');" dropdownPosition="bottom"
+               [appendTo]="'body'" placeholder="Not in the list? Find your car's model here"></ng-select>
+            </div>
+         </form>
+         <div class="good-make" id="top-model" style="margin-top: 10px" >
+            <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="center" class="top-model__item" data-txt="AVEO"
+               id="model_AVEO" data-val="undefined" style="margin-top:30px">
+               <div *ngFor="let item of topModelList" [ngClass]="{'is-selected':item.model_code === form_model}"
+               style="width: 110px" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+               fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="50%"
+               (click)="move(3);modelTapped(item.model_name,item.model_code);track_button('create-model-btn')">
+               <span class="example-button">{{item.model_name}}</span>
+            </div>
+         </div>
+         <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="center" class="top-model__item">
+            <div (click)="focusModle()" style="width: 100%" class="good-make-wrap img-wrap"
+               fxFlex="0 1 calc(33% - 32px)" fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%">
+               Others
+            </div>
+         </div>
+      </div>
+      </mat-step>
+      <mat-step [stepControl]="fuelFormGroup" [editable]="isEditable">
+      <a href="JavaScript:void(0);" (click)="goBackward()" area-label="back">
+         <mat-icon aria-hidden="false" aria-label="Example keyboard_arrow_left icon">keyboard_arrow_left</mat-icon>
+      </a>
+      <div class="topic">
+         <!-- <h1>What's type of fuel ?</h1> -->
+         <p style="font-size:16px !important;margin-top:4px;font-family:'Avenir-Book' !important;display:block;font-weight:bold;">What's type of fuel ?</p>
+      </div>
+      <form [formGroup]="fuelFormGroup">
+         <ng-template matStepLabel matTabContent>
+            <span [ngClass.lt-md]="{'hideme':true}" class="example-button">{{fuelName}}</span>
+         </ng-template>
+         <div class="good-make" id="Fuel">
+            <div fxLayout="row wrap" fxLayout.lt-sm="column"  fxLayout.xs="row" fxLayoutGap="22px" fxLayoutAlign="center"
+               class="top-model__item" data-txt="AVEO" id="model_AVEO" data-val="undefined">
+               <div *ngFor="let item of totalFuelList" [ngClass]="{'is-selected':item.fuel_type_text === form_fuel}"
+               class="good-make-wrap img-wrap" fxFlex="0 1 calc(22% - 32px)" fxFlex.lt-md="0 1 calc(50% - 22px)"
+               fxFlex.lt-sm="100%" (click)="move(4);fuelTapped(item.fuel_type_text,item.fuel_type,item.model_code);track_button('create-fuel-btn')">
+               <div class="good-make-wrap">
+                  <img alt="Chevrolet" src="assets/quote/img/{{item.fuel_logo}}" alt="{{item.fuel_logo}}">
+                  <div style="text-align: center">{{item.fuel_type_text}}</div>
+               </div>
+            </div>
+         </div>
+   </div>
+   </form>
+   </mat-step>
+   <mat-step [stepControl]="variantFormGroup" [editable]="isEditable">
+   <a href="JavaScript:void(0);" (click)="goBackward()" area-label="back">
+      <mat-icon aria-hidden="false" aria-label="Example keyboard_arrow_left icon">keyboard_arrow_left</mat-icon>
+   </a>
+   <div class="topic">
+      <!-- <h1>What's your car's variant?</h1>  -->
+      <p style="font-size:16px !important;margin-top:4px;font-family:'Avenir-Book' !important;display:block;font-weight:bold;">What's your car's variant?</p>
+   </div>
+   <form [formGroup]="variantFormGroup">
+      <ng-template matStepLabel matTabContent>
+         <span [ngClass.lt-md]="{'hideme':true}" *ngIf="variantName.length>12;else variantNameTooltip"
+         matTooltipClass="example-tooltip-red" matTooltip="{{variantName}}" [matTooltipPosition]="'above'"
+         class="example-button">{{variantName| slice:0:12}}..</span>
+         <ng-template #variantNameTooltip>
+            <div>{{variantName}}</div>
+         </ng-template>
+      </ng-template>
+      <div fxFlex="100%" fxFlexFill>
+         <ng-select #variantSelect style="margin-top: 50px;padding-right: 10x;font-size: 13px;text-align: left;"
+         [virtualScroll]=true [items]="totalVariantList" bindLabel="name" dropdownPosition="bottom"
+         [appendTo]="'body'" (change)="variantTapped($event.id,$event.variant_name,$event.cubic_capacity);track_button('create-variant-btn')"
+         placeholder="Not in the list? Find your car's Variant"></ng-select>
+      </div>
+   </form>
+   <div class="good-make" id="variant" style="margin-top:30px">
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="22px" fxLayoutAlign="center"
+         class="top-model__item" data-txt="AVEO" id="model_AVEO" data-val="undefined">
+         <div *ngFor="let item of topVariantList"   style="width: 110px" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 18px)"
+         fxFlex.lt-md="0 1 calc(50% -15px)" fxFlex.lt-sm="50%"
+         [ngClass]="{'is-selected':item.variant_code === form_variant}" class="good-make-wrap img-wrap"
+         fxFlex="0 1 calc(33% - 18px)" fxFlex.lt-md="0 1 calc(50% - 15px)" fxFlex.lt-sm="100%"
+         (click)="move(5);variantTapped(item.id,item.variant_name,item.variant_code,item.cubic_capacity);track_button('create-variant-btn')">
+         <span class="example-button">{{item.variant_name}} ({{item.cubic_capacity}} CC)</span>
+      </div>
+   </div>
+   <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="center" class="top-model__item">
+      <div (click)="focusVariant()" style="width: 100%" class="good-make-wrap img-wrap"
+         class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)" fxFlex.lt-md="0 1 calc(50% - 22px)"
+         fxFlex.lt-sm="100%">
+         Others
+      </div>
+   </div>
+</div>
+</mat-step>
+<mat-step [stepControl]="regisFormGroup" [editable]="isEditable">
+<a href="JavaScript:void(0);" (click)="goBackward()" area-label="back">
+   <mat-icon aria-hidden="false" aria-label="Example keyboard_arrow_left icon">keyboard_arrow_left</mat-icon>
+</a>
+<div class="topic">
+   <!-- <h1>What is your car registration location?</h1>  -->
+   <p style="font-size:16px !important;margin-top:4px;font-family:'Avenir-Book' !important;display:block;font-weight:bold;">What is your car registration location?</p>
+</div>
+<form [formGroup]="regisFormGroup">
+   <ng-template matStepLabel matTabContent>
+      <span [ngClass.lt-md]="{'hideme':true}" class="example-button">{{registrationName}}</span>
+   </ng-template>
+   <ng-select formControlName="regisCtrl" #rtoSelect [selectOnTab]=false [appendTo]="'body'"
+   style="margin-top:60px;padding-right: 10x;font-size: 13px;text-align: left;" [virtualScroll]=true
+   [items]="totalRtoList" bindLabel="name" (change)="registrationTapped($event.id);focusCursorRegdate();track_button('create-rto-btn')"
+   dropdownPosition="bottom" placeholder="Not in the list? type your RTO code here" (close)="get_rto_list()"  (input)="rtoMasking($event.target.value,$event,rtoSelect)">
+   </ng-select>
+   <div class="good-make" id="Registration" style="margin-top:15px" fxLayout.lt-sm="column">
+      <div fxLayout="row wrap" fxLayout.lt-sm="column"  fxLayoutGap="22px" fxLayoutAlign="center"
+         class="top-model__item" data-txt="AVEO" id="model_AVEO" data-val="undefined">
+         <div (click)="focusRto('5550')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+            fxFlex.xs="0 1 calc(33% - 10px)" fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%">Delhi
+         </div>
+         <div (click)="focusRto('2526')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+            fxFlex.lt-md="0 1 calc(50% - 15px)" fxFlex.lt-sm="100%">Kolkata
+         </div>
+         <div (click)="focusRto('5355')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+            fxFlex.lt-md="0 1 calc(50% - 15px)" fxFlex.lt-sm="100%">Mumbai
+         </div>
+         <div (click)="focusRto('5603')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+            fxFlex.lt-md="0 1 calc(50% - 15px)" fxFlex.lt-sm="100%">Bangalore
+         </div>
+         <div (click)="focusRto('1819')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+            fxFlex.lt-md="0 1 calc(50% - 15px)" fxFlex.lt-sm="100%">Hyderabad
+         </div>
+         <div (click)="focusRto('4395')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+            fxFlex.lt-md="0 1 calc(50% - 15px)" fxFlex.lt-sm="100%">Shimla
+         </div>
+         <div (click)="focusRto('3873')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+            fxFlex.lt-md="0 1 calc(50% - 15px)" fxFlex.lt-sm="100%">Pune
+         </div>
+         <div (click)="focusRto('931')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+            fxFlex.lt-md="0 1 calc(50% - 15px)" fxFlex.lt-sm="100%">Chandigarh
+         </div>
+         <div (click)="focusRto('1890')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(33% - 32px)"
+            fxFlex.lt-md="0 1 calc(50% - 15px)" fxFlex.lt-sm="100%">Jaipur
+         </div>
+      </div>
+      <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="center" class="top-model__item">
+         <div (click)="focusRto('')" style="width: 100%" class="good-make-wrap img-wrap"
+            fxFlex="0 1 calc(33% - 32px)" fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%">
+            Others
+         </div>
+      </div>
+   </div>
+   <div *ngIf="form_premium_type==1">
+      <div class="topic">
+         <!-- <h1>What is your car registration Year?</h1> -->
+         <p style="font-size:16px !important;margin-top:4px;font-family:'Avenir-Book' !important;display:block;font-weight:bold;">What is your car registration Year?</p>
+      </div>
+      <p>
+         <mat-form-field appearance="outline" fxFlex id="remove-margin">
+            <mat-label>Find your year of registration here</mat-label>
+            <mat-select #rtoYrSelect formControlName="regisYrCtrl" placeholder="Select your registration year"
+               #singleSelect>
+               <mat-option *ngFor="let item of regYearDropdown" (click)="goForward();contactTapped(item)"
+               [value]="item">
+               {{item}}
+               </mat-option>
+            </mat-select>
+         </mat-form-field>
+      </p>
+      <div class="good-make" id="regyear"  style="margin-top:-9px"  fxLayout.lt-sm="column">
+         <div fxLayout="row wrap" fxLayout.lt-sm="column"  fxLayoutGap="22px" fxLayoutAlign="center"
+            class="top-model__item" data-val="undefined">
+            <ng-container *ngFor="let item of regYearDropdown; let i = index" >
+               <div *ngIf="i<8" (click)="contactTapped(item);goForward();track_button('create-reg-btn')" class="good-make-wrap img-wrap" fxFlex="0 1 calc(22% - 32px)"
+               fxFlex.xs="0 1 calc(33% - 10px)" fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%">{{item}}
+         </div>
+         </ng-container>
+         <div (click)="focusRegdate()" style="width: 100%" class="good-make-wrap img-wrap"
+            fxFlex="0 1 calc(33% - 32px)" fxFlex.lt-md="0 1 calc(50% - 22px)" fxFlex.lt-sm="100%">
+            Others
+         </div>
+      </div>
+      <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="center" class="top-model__item">
+      </div>
+   </div>
+   </div>
+   <div>
+      <button mat-button class="contact100-form-btn" type="submit" matStepperNext>
+      &nbsp; &nbsp;&nbsp; Save &
+      Continue &nbsp;&nbsp;&nbsp;</button>
+   </div>
+</form>
+</mat-step>
+<mat-step [stepControl]="contactFormGroup" id="last-s" completed="false">
+   <a (click)="goBackward()" href="JavaScript:void(0);" area-label="back">
+      <mat-icon aria-hidden="false" aria-label="Example keyboard_arrow_left icon">keyboard_arrow_left</mat-icon>
+   </a>
+   <div class="topic">
+      <!-- <h1>Please Provide the Information</h1> -->
+      <p style="font-size:16px !important;margin-top:4px;font-family:'Avenir-Book' !important;display:block;font-weight:bold;">Please Provide the Information</p>
+   </div>
+   <form [formGroup]="contactFormGroup" (ngSubmit)="contactFormSubmit();" >
+   <mat-form-field appearance="outline" class="mat-form-field-select-margin">
+      <mat-label >Your Mobile Number</mat-label>
+      <input formControlName="mobileNoCtrl" matInput placeholder="Please Enter Your Mobile Number"
+      maxlength="10" type="number" (input)="checkLength($event.target.value,10)" #custMobileNo >
+   </mat-form-field>
+   <mat-form-field appearance="outline">
+      <mat-label>Your Email Id</mat-label>
+      <input formControlName="emailCtrl" matInput placeholder="Please Enter Your Email Id">
+   </mat-form-field>
+   <div *ngIf="form_premium_type==1">
+      <mat-form-field appearance="outline" *ngIf="!dont_have_prev_policy">
+         <mat-label>Expiry Date</mat-label>
+         <input [min]="expireMinDate" [max]="expireMaxDate" formControlName="expiryDate" matInput [matDatepicker]="picker" date=true (focus)="picker.open()"
+         placeholder="Please Select Policy Expiry Date">
+         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+         <mat-datepicker #picker [startAt]="startDate"></mat-datepicker>
+      </mat-form-field>
+      <mat-checkbox style="margin-bottom: 9px;" *ngIf="IS_LIVE!=2" [checked]="dont_have_prev_policy" (change)="prevPolicyCheck($event)">I don't have previous year policy
+      </mat-checkbox>
+      <mat-form-field appearance="outline">
+         <mat-label>Have you made any claim on last year?</mat-label>
+         <mat-select formControlName="lastClaim" placeholder="Last Claim Taken?">
+            <mat-option value="1">Yes</mat-option>
+            <mat-option value="0" >No</mat-option>
+         </mat-select>
+      </mat-form-field>
+   </div>
+   <div fxLayout="row" fxLayoutAlign="center center" *ngIf="!contactSubmitLoader">
+      <div>
+         <button mat-button class="contact100-form-btn"  type="submit">&nbsp;&nbsp;&nbsp;Continue to View
+         Quotes&nbsp;&nbsp;&nbsp;</button>
+      </div>
+   </div>
+   <div fxLayout="row" style="height: 80px;margin-top: -45px" fxLayoutAlign="center center" *ngIf="otp_msg">
+      <p style="margin-top: 50px;color: #e20e0e;">{{otp_msg}}
+      <p>
+   </div>
+   <div fxLayout="row" style="height: 80px;margin-top: -45px" fxLayoutAlign="center center" *ngIf="contactSubmitLoader">
+      <div id="registration-loader" style="text-align:center">
+         <div class="loader">Loading...</div>
+      </div>
+   </div>
+   </form>
+</mat-step>
+</mat-horizontal-stepper>
+  </div>
+</div>
+<ng-container *ngIf="white_label==0">
+<div class="container-wrap" >
+   <div class="container">
+      <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="center" class="row-wrap">
+         <div class="container-fluid" fxLayout="column">
+            <div  fxLayout="column" fxFlex="100">
+               <div  fxFlex="100">
+                  <h2 class="text-center h2" style="text-align: center; font-weight: bold;">What Does Car Insurance Cover? </h2>
+               </div>
+               <div  fxFlex="100" fxLayout="row"   fxLayout.xs="column">
+                  <div fxFlex="33" fxFlex.xs="100">
+                     <div class="single-catagory-area wow fadeInUpBig" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUpBig;">
+                        <div class="catagory-content">
+                           <p><img src="assets/quote/img/bd.gif" title="A" alt="24*7breakdown" style="height:90px; margin-left: auto; margin-right: auto;"></p>
+                           <strong id="roadassistance" style="color:black;"> 24 x 7 Break Down Services</strong>
+                           <p>Did you know in case of your car breaks down, you are entitled to get a pickup service while your car get a towed service under certain policies?</p>
+                        </div>
+                     </div>
+                  </div>
+                  <div fxFlex="33" fxFlex.xs="100">
+                     <div class="single-catagory-area wow fadeInUpBig" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUpBig;">
+                        <div class="catagory-content">
+                           <p><img src="assets/quote/img/cr.gif" title="A" alt="cashlessrepair" style="height:90px; margin-left: auto; margin-right: auto;"></p>
+                           <strong id="Cashless" style="color:black;">Cashless Repair</strong>
+                           <p>Did you know that repair to your accidentally damaged vehicle can be arranged cashless through the selected garages across the country?</p>
+                        </div>
+                     </div>
+                  </div>
+                  <div fxFlex="33" fxFlex.xs="100">
+                     <div class="single-catagory-area wow fadeInUpBig" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUpBig;">
+                        <div class="catagory-content">
+                           <p><img src="assets/quote/img/td.gif" title="A" alt="thirdpartypropertydamage" style="height:90px; margin-left: auto; margin-right: auto;"></p>
+                           <strong id="thirdparty" style="color:black;"> Third Party Property Damage</strong>
+                           <p>Did you know that you can extend third party property damage liability up to 7,50,000 under this policy with some additional premium?</p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div fxFlex="100"  fxLayout="row" fxLayout.xs="column">
+                  <div fxFlex="33" fxFlex.xs="100">
+                     <div class="single-catagory-area wow fadeInUpBig" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUpBig;">
+                        <div class="catagory-content">
+                           <p><img src="assets/quote/img/wc.gif" title="A" alt="windscreenglasscoverage" style="height:90px; margin-left: auto; margin-right: auto;"></p>
+                           <strong id="windscreen" style="color:black;">Windscreen Glass Coverage</strong>
+                           <p>Did you know that you can cover any damage of your windscreen glass by paying some additional premium without your no claim bonus getting affected?</p>
+                        </div>
+                     </div>
+                  </div>
+                  <div fxFlex="33" fxFlex.xs="100">
+                     <div class="single-catagory-area wow fadeInUpBig" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUpBig;">
+                        <div class="catagory-content">
+                           <p><img src="assets/quote/img/zd.gif" title="A" alt="nildep" style="height:90px; margin-left: auto; margin-right: auto;"></p>
+                           <strong id="Nil" style="color:black;"> Nil Depreciation</strong>
+                           <p>Did you know that by paying additional premium, depreciation during replacement of car parts can be waived?</p>
+                        </div>
+                     </div>
+                  </div>
+                  <div fxFlex="33" fxFlex.xs="100">
+                     <div class="single-catagory-area wow fadeInUpBig" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUpBig;">
+                        <div class="catagory-content">
+                           <p><img src="assets/quote/img/ep.gif" title="A" alt="engineprotection" style="height:90px; margin-left: auto; margin-right: auto;"></p>
+                           <strong id="Engine" style="color:black;">Engine Projection</strong>
+                           <p>Did you know that by paying additional premium, depreciation during replacement of car parts can be waived?</p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div fxFlex="100" fxLayout="column" >
+                  <mat-tab-group>
+                     <mat-tab label="About">
+                        <div class="tab-pane fade show active" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab" fxLayout="column">
+                           <div  fxFlex="100"  >
+                              <div fxFlex="75" class="newcar" id="about" fxFLex.xs="100">
+                                 <h2 id="about">Car Insurance Overview</h2>
+                                 <p id="about" >Car Insurance, alternatively known as motor insurance or auto insurance is a specific policy that you buy for the protection of your vehicle against any sort of damages due to inescapable or unfortunate accident. Since India is a country mainly known for its vast population, car accidents have become a daily drama here. No matter how safely you drive your car or how responsibly you manage your vehicle, accidents can happen just as fast as we blink isn’t it? Imagine this: you parked your car outside a shopping mall and when you come back from shopping after a couple hours, with a bolt from the blue you discover a big dent on the back of your car. How do you deal with such situation? Well, fortunately, that’s when your online car insurance policy comes into its role play.</p>
+                                 <h2 id="about"> Why Car Insurance Is Important in India?</h2>
+                                 <p id="about">Car insurance policies can literally serve you more than you can ever think. The importance of car insurance in India is directly linked to the law imposed by the Government of India. As per Motor Vehicles Act, 1988, it’s mandatory for all motorists to possess at least the third motor insurance. Having car insurance in India is important as it covers all the costs incurred from such events of vehicle damage or injuries done to other driver, pedestrians or passenger involving your vehicle. Online car insurance policies also play a vital role by providing coverage against various loss or damage to your vehicle resulting from Theft, Accident, Fire or Explosion, Lightening, Self Ignition, Strikes, Riots, Disaster, Act of Terrorism, Transit by Rail, Road, Air and so on depending on the type online car insurance plan you choose. To enjoy the benefits of an auto insurance coverage in India one needs to pay for the premium on their car insurance policy.</p>
+                              </div>
+                              <div fxFlex="25" fxHide.xs>
+                                 <img alt="motor insurance" src="assets/quote/img/caro.gif">
+                              </div>
+                           </div>
+                           <div  fxFlex="100" fxLayout.xs="column">
+                              <div class="col-md-12 new-car" id="about" fxFlex="100" fxLayout="column" style="display:inline-block !important; padding: 15px;">
+                                 <h2 id="about"> Different Types Of Car Insurance Plans</h2>
+                                 <p id="about">In general, you will be offered two types motor insurance covers by a car insurance company within their car insurance plans. The Two types of motor insurance plans are Third Party Liability Car Insurance Coverage and Comprehensive Car Insurance Coverage. <br></p>
+                                 <br>
+                                 <div class="tp-car" fxFlex="50" style="background:#cddc391f; min-height:223px; float: left; max-width: 50%;">
+                                    <h2>Third Party Liability Car Insurance</h2>
+                                    <p>The first party who is the owner of a four wheeler buys a motor insurance policy from the second party that is the car insurance company for the protection against the claims of a third party that can be a driver of another vehicle, passengers or even pedestrians. Third Party car insurance policy is specifically designed to cover any property damages or bodily injuries to a third party caused by your vehicle. It’s obligatory to have third party car insurance for all motor vehicles piling on road in India. </p>
+                                 </div>
+                                 <div class="tp-car" fxFlex="50" style="background: #ddfbfb;min-height:223px; float: left;  max-width: 50%;">
+                                    <h2>Comprehensive Car Insurance</h2>
+                                    <p>Comprehensive car insurance is an optional car insurance policy that comes with higher level of protection for your vehicle. The best advantage of buying comprehensive car insurance in India is that it protects your own vehicle against various damages arising from accident, fire, vandalism or even theft plus it also takes care of the third party liability claims. Some extra features and benefits are offered with comprehensive car insurance plan by the best car insurance company in India.</p>
+                                 </div>
+                                 <div class="col-md-12" style="display: inline-block;width:100%;">
+                                    <h2>Add On Covers For Four Wheeler Insurance</h2>
+                                    <p> Like the name suggests, add on covers for motor insurance stand for additional coverage that are not included with a comprehensive auto insurance plan. To purchase add on cover for your vehicle, you’ll have to make some extra payment along with your car insurance premium. Best car insurance companies in India offer auto insurance policy buyers with a broad range of effective add on covers and attractive discounts. Car insurance company offers various add on covers from which you can pick as per your requirements for your four wheeler insurance. You can choose one or multiple add on covers for your auto insurance. Including add on covers in your motor insurance policy is subject to your car insurance premium. Some of the best add on covers for car insurance policies are following.<br>
+                                       <br>
+                                    </p>
+                                 </div>
+                                 <div fxLayout="row" fxLayout.xs="column" fxFlex="100" style="text-align: center;">
+                                    <div class="col-md-3 new-car feature" fxFlex="30">
+                                       <img alt="zero depreciation" src="assets/quote/img/Zero-Depreciation.gif">
+                                       <h3>Zero Depreciation</h3>
+                                       <p>
+                                          The car insurance company will calculate depreciation on certain parts of your vehicle at the time of claim settlement. This procedure leads to getting less claim amount. However, purchasing Zero Depreciation or Nil Depreciation cover for your auto insurance policy entitles you to get the full amount on your claim.
+                                       </p>
+                                    </div>
+                                    <div class="col-md-3 new-car feature" fxFlex="30">
+                                       <img alt="Engine-Protector" src="assets/quote/img/Engine-Protector.gif">
+                                       <h3>Engine Protector</h3>
+                                       <p>
+                                          Car engine is not covered by an auto insurance policy in general. Engine Protect cover pays for any engine-related repairs or damages that are not related to accidents. This add on cover is mainly suggested for the owners with high end cars. Engine protector can be purchased in a policy for the cars up to three years of age.
+                                       </p>
+                                    </div>
+                                    <div class="col-md-3 new-car feature" fxFlex="30">
+                                       <img alt="Roadside-Assistance" src="assets/quote/img/Roadside-Assistance.gif">
+                                       <h3>Roadside Assistance</h3>
+                                       <p>
+                                          This is a very crucial add on to consider for your motor insurance policy. Car insurance company provides round-the-clock services like towing, refueling, change of flat tyre, arranging for a mechanic in case of vehicle breakdown under Roadside Assistance cover.
+                                       </p>
+                                    </div>
+                                    <div class="col-md-3 new-car feature" fxFlex="30">
+                                       <img alt="(NCB)" src="assets/quote/img/No-Claim-Bonus-(NCB)-Protection.gif">
+                                       <h3>No Claim Bonus (NCB)</h3>
+                                       <p>
+                                          No Claim Bonus is an additional discount on premium offered by car insurance companies to their policyholders for not filing any claim during a policy term. This discount is applicable on your auto insurance premium. This add on cover can help you save money on your car insurance premium by up to 50% on the basis of claim free years on your policy.
+                                       </p>
+                                    </div>
+                                 </div>
+                                 <div fxLayout="row" fxFlex="100" fxLayout.xs="column">
+                                    <div fxFlex="40" style="margin-right: 10%;">
+                                       <h2>Benefits Of Car Insurance</h2>
+                                       <p>Car insurance online certainly has a plethora of benefits to offer. The list of advantages for car insurance comprises of the following. </p>
+                                       <ul class="list">
+                                          <li> Covers third party damages involving your vehicle.</li>
+                                          <li> Compensates vehicle repairing costs due to damage from an accident.</li>
+                                          <li> Coverage against damages caused from vandalism, theft, fire, etc </li>
+                                          <li> Offers cashless payment system. You can repair your vehicle form the network garages of your insurer and avail cashless facility.</li>
+                                          <li>Offers additional discounts on premium as in multi car or multi policy discounts, accident free discounts etc. </li>
+                                          <li>No Claim Bonus which is offered by auto insurance providers to reduce the cost of premium for each claim free years maintained by policyholders.</li>
+                                       </ul>
+                                    </div>
+                                    <div fxFlex="50">
+                                       <h2>How To Buy Car Insurance Online?</h2>
+                                       <p>The process of purchasing online car insurance policy is easier than you think. You can get online car insurance quotes in a matter of minutes on purchase of both new policies or renewal of old car insurance policies. You can purchase or renew auto insurance policies online directly from the website of any individual insurers or, you can also buy auto policies from an insurance broking portal, which is, judging from various aspects is the best way to buy or renew motor insurance policies in India. Because insurance broking portals present you a broad ground of choices to pick and select from and guide you thoroughly so you can avail the best car insurance plan when you buy or renew auto insurance policy online. You can compare motor insurance policy online and thereafter choose a plan as per your requirements. <br>
+                                          So if you are having trouble finding the cheapest and best car insurance online plans, give us the pleasure to guide you to the right direction. Simply fill a form at GIBL.IN, get top car insurance quotes, compare them as per your needs and insure your vehicle instantly in a few minutes.
+                                       </p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </mat-tab>
+                     <mat-tab label="Compare"  style="margin-right: 10px;">
+                        <div  class="newcar"  id="nav-compare" role="tabpanel" aria-labelledby="nav-compare-tab" fxLayout="column">
+                           <div fxFlex="100" fxLayout="row"  fxLayout.xs="column">
+                              <div fxFlex="40" class="newcar" style="margin-right: 10%;">
+                                 <h2>Compare Car Insurance Policy Online</h2>
+                                 <p>There’s no denying the fact that the best deal for car insurance policies can be found online without hassle. You can even avail the lowest priced car insurance policy effortlessly if you compare car insurance policy online. Car insurance comparison online in India can literally open up a new yet innovative direction in terms of finding the best car insurance plans. The answer to such questions like “How to find the best car insurance policy?” is directly or indirectly linked to the online comparison of various auto insurance policies. When you buy car insurance policy online, you can certainly be a gainer if you compare car insurance. You can compare the car insurance quotes offered by different insurers online easily. GIBL.IN lets you compare various car insurance policies offered by top car insurance companies in India and help you procure the best motor insurance plan.</p>
+                                 <img alt="Car Insurance" src="assets/quote/img/Compare-Car-Insurance-Policy-Online_1.gif" width="250" height="250">
+                              </div>
+                              <div fxFlex="50" class="newcar" >
+                                 <h2>Why to Compare Car Insurance Policy Online?</h2>
+                                 <p>The answer is simple; you should not compromise while buying or renewing online car insurance policy. Not all auto insurance companies offer the same features for their car insurance plans. Only the best motor insurance company can offer you the best car Insurance quotes. That too can be found easily when you compare motor insurance policy online. You can specifically see for yourself all the features and benefits that are being offered by different auto insurance company and choose only those policies that match your requirements and budget when you compare car insurance online. <br>
+                                 </p>
+                                 <h3>Get Only the Best Car Insurance Plans</h3>
+                                 <p>Be assured of getting the best car insurance policy when you compare motor insurance policy online. Comparison of different motor insurance plans at GIBL.IN certainly enables you unearth the best deals while buying car insurance online in India. </p>
+                                 <h3>Online Car Insurance Quote Comparison</h3>
+                                 <p>While shopping around for online car insurance in India, most people only check with the car insurance companies they are familiar with. You may have known about these car insurance companies through your friends on via commercials on the TV. However, these auto insurance companies can certainly be popular but they may not be the best option for you when it comes about buying best online car insurance in India at lower rates. The more online car insurance quotes you get, the better your chances of finding the cheapest priced car insurance policy. By running an instant comparison of various online car insurance quotes, you can avail best car insurance policies. </p>
+                              </div>
+                           </div>
+                           <h3 id="avail" class="text-left">How To Avail The Best Car Insurance Policy At A Low Price?</h3>
+                           <div fxFlex="100" fxLayout="row" class="newcar">
+                              <div fxFlex="70"  class="newcar" >
+                                 <p>
+                                    Car insurance is an essential requirement. And it is mandatory by law too, as per the Motor Vehicles Act 1988. The numbers of vehicles on road have gone considerably high throughout the past few decades. India is a country of diversity as well as of uncertainties. You can witness more motor vehicles in the street than pedestrians nowadays. The conditions of the metropolitan cities are even worse. <br>
+                                    With the rising numbers of cars in the street have risen the numbers of accidents as well. On an average, approximately 400 deaths per day are witnessed from a vehicle accident while over 1200 road crashes occurs every day in India. All these statistics certainly calls for robust safety measures to keep the life of yours as well as your family protected against any unforeseen vehicle accident. <br>
+                                    Apart from that, an accident of your vehicle can cause you a hefty amount for the repairing or the replacement. A comprehensive car insurance policy, therefore, is highly recommended to have the ultimate level of security as well as peace of mind in the course of your car ride. Everyone wants to have the best car insurance policy for themselves, and there isn’t anything wrong in this. <br>
+                                    It’s our right to have the best policy since we are putting our hard earned money on the protection of our vehicle. Still a big chunk of the motor owners only go for the compulsory third party motor insurance policy. They don’t go for the comprehensive auto insurance plan; and this decision could be, in turn, a blunder in case of an accident or serious injury or damage due to an accident. <br>
+                                    However, you will have to keep a few things in mind if you want to avail the best car insurance policy in India at the lowest price with extensive coverage.
+                                 </p>
+                              </div>
+                              <div fxFlex="30" fxHide.xs ><img alt="Car Insurance" style="margin-top:90px; float:left;" src="assets/quote/img/Price-Down.gif" width="250" height="250">
+                              </div>
+                           </div>
+                           <div fxFlex="100" fxLayout="row" class="newcar" fxLayout.xs="column">
+                              <div fxFlex="40" style="margin-right: 10%;" class="newcar" >
+                                 <h3>Compare Car Insurance Online</h3>
+                                 <p> It’s the most important factor that you must consider if you are really willing to avail the best car insurance plan at the lowest guaranteed premium. There are a number of effective and reputed online insurance policy comparison web portals available in India (one such is GIBL.IN), from where you can easily and effortlessly compare motor insurance policies at just a click of your mouse. Comparison brings you better options and multiple alternatives. When you compare car insurance online, do make sure that you do not stick to the same comparison portal. Also, make sure that the website shows an unbiased car insurance comparison quotes. Making sure that the quote is calculated on the same IDV (insured declared value) is also important. </p>
+                              </div>
+                              <div fxFlex="40" class="newcar" >
+                                 <h3>Buy or Renew Car Insurance Online</h3>
+                                 <p>
+                                    Since everything is being encapsulated within internet and technology, insurance policies are also not lagged behind. Almost all the reputed providers of general insurance have made their presence in the online world with their individual websites. You no longer have to fall prey to an agent’s cunning schemes. You can directly renew or buy your car insurance policy directly from your insurer or other insurance providers by simply visiting their website. Providers of auto insurance policies are likely to offer you discounts on premium when you renew policy from their site online. You can renew your policy in the comfort of your home, at any given time as per your convenience.
+                                 </p>
+                              </div>
+                           </div>
+                           <div fxFlex="100" fxLayout="row" class="newcar" fxLayout.xs="column">
+                              <div fxFlex="40" style="margin-right: 10%;" class="newcar" >
+                                 <h3>Consider Claim Settlement Ratio</h3>
+                                 <p> You generally pay premium on your best auto insurance policy to avail the financial protection in case of an unforeseen incident. Therefore, you must make sure that your car insurance claim is accepted by your insurer in order to get any financial assistance. The motor insurance claim settlement ratio stands for the total number of motor insurance claims approved by any particular insurance company, divided by the total number of motor claims received by the company. The higher the claim settlement ratio of the company the better it is for you. Do consider purchasing car insurance policy from an insurer that has the highest claim settlement ratio. You can compare claim settlement ratio of different insurance providers online as well. Also, take a look into the time taken by a motor insurance provider to settle a claim. Go for a car insurance company that offers transparent, quick and easy claim settlement.</p>
+                              </div>
+                              <div fxFlex="40" class="newcar" >
+                                 <h3>The Reputation of the Auto Insurance Company</h3>
+                                 <p>
+                                    It’s very much important that you consider the reputation or goodwill of a motor insurance company before you choose to renew policy with them. The thing is there is a plethora of providers for car insurance in the country. And not all of them will be offering you the best services or coverage. So, you must look for the reputation of a particular insurer to find out the true reality of a motor insurer. A motor insurance provider with a good reputation is likely to offer the best car insurance plans at affordable prices. You no longer have to worry about the claims, support, coverage or protection when you buy car insurance policy from a reputed insurer.
+                                 </p>
+                              </div>
+                           </div>
+                           <div fxFlex="100" fxLayout="row" class="new-car">
+                              <h3>What is Add-ons in Car Insurance</h3>
+                              <p>
+                                 Add-ons generally stand for additional covers with your motor insurance policy. The job of add-on covers is to offer protection against something that is not already covered under your comprehensive car insurance plan. You should consider add-ons in terms of availing the best protection or coverage. There are a number of effective add-on covers available such as Nil Depreciation, NCB Protector Add-on Cover, Roadside Assistance, Engine Protector Add-on, Return to Invoice etc and much more.
+                                 You will have to pay an additional amount along with your car insurance premium to avail the benefits of an add-on cover. So, make sure you do not choose additional covers that may not serve you any benefit. As per your personal requirements, go for the additional cover with your car insurance policy.<br>
+                                 Apart from these above-mentioned points, make sure that you consider the numbers the cashless network of garages of an insurance provider. The highest the numbers of cashless garage is registered with an insurer the better it is for you. You should go for a motor insurance provider that has the broadest network of cashless garage that offers cashless claims throughout the country. Also, make sure that the company you choose for auto insurance renewal offers 24/4 customer service assistance.<br>
+                                 Keeping the above mentioned points in mind before buying or renewing your car insurance policy online will certainly help you unearth the best motor insurance coverage at the lowest premium. Comparison is the most important tool in terms of availing the best car insurance coverage. Compare the car insurance policies from various top insurers in India at GIBL.IN and find the best car insurance policy at the lowest guaranteed premium.
+                              </p>
+                           </div>
+                           <div fxFlex="100" fxLayout="row">
+                              <div class="col-md-6 new-car" fxFlex="50">
+                                 <p style="background-color: aliceblue;margin-top: 13px;"><strong style="font-size: 17px;">Get Best Car Insurance from top Car Insurance Companies</strong></p>
+                                 <p> <a href="https://www.gibl.in/national-insurance/national-car-insurance/">National Car Insurance</a><br>
+                                    <a href="https://www.gibl.in/new-india-assurance/new-india-car-insurance/">New India Car Insurance </a><br>
+                                    <a href="https://www.gibl.in/new-india-assurance/new-india-car-insurance/">United India Car Insurance </a><br>
+                                    <a href="https://www.gibl.in/oriental-insurance/oriental-car-insurance.html">Oriental Car Insurance </a><br>
+                                    <a href="https://www.gibl.in/hdfc-ergo-insurance/hdfc-ergo-car-insurance.html">HDFC Ergo Car Insurance </a><br>
+                                    <a href="https://www.gibl.in/bajaj-allianz-insurance/bajaj-allianz-car-insurance.html">Bajaj Allianz Car Insurance </a><br>
+                                    <a href="https://www.gibl.in/sbi-general-insurance/sbi-car-insurance/">SBI Car Insurance </a><br>
+                                    <a href="https://www.gibl.in/iffco-tokio-insurance/iffco-tokio-car-insurance.html">IFFCO Tokio Car Insurance </a><br>
+                                    <a href="https://www.gibl.in/tata-aig-insurance/tata-aig-car-insurance.html">Tata AIG Car Insurance </a><br>
+                                    <a href="https://www.gibl.in/bharti-axa-insurance/bharti-axa-car-insurance.html">Bharti AXA Car Insurance </a>
+                                 </p>
+                              </div>
+                              <div class="col-md-6 new-car" fxFlex="50">
+                                 <p style="background-color: aliceblue;margin-top: 13px;font-size: 17px;"><strong style="font-size: 17px;">Get Best Car Insurance Deal from your own city</strong></p>
+                                 <p> <a href="https://www.gibl.in/car-insurance/car-insurance-bangalore.html">Car Insurance Bangalore </a><br>
+                                    <a href="https://www.gibl.in/car-insurance/car-insurance-delhi.html">Car Insurance Delhi </a><br>
+                                    <a href="https://www.gibl.in/car-insurance/car-insurance-hyderabad.html">Car Insurance Hyderabad </a><br>
+                                    <a href="https://www.gibl.in/car-insurance/car-insurance-kolkata.html">Car Insurance Kolkata </a><br>
+                                    <a href="https://www.gibl.in/car-insurance/car-insurance-mumbai.html">Car Insurance Mumbai </a><br>
+                                    <a href="https://www.gibl.in/car-insurance/car-insurance-chennai.html">Car Insurance Chennai </a><br>
+                                    <a href="https://www.gibl.in/car-insurance/car-insurance-gujarat.html">Car Insurance Gujarat </a><br>
+                                    <a href="https://www.gibl.in/car-insurance/car-insurance-pune.html">Car Insurance Pune </a><br>
+                                    <a href="https://www.gibl.in/car-insurance/car-insurance-tamil-nadu.html">Car Insurance Tamilnadu </a><br>
+                                    <a href="https://www.gibl.in/car-insurance/car-insurance-west-bengal.html">Car Insurance West Bengal </a>
+                                 </p>
+                              </div>
+                           </div>
+                        </div>
+                     </mat-tab>
+                     <mat-tab label="Companies" fxHide.xs>
+                        <div class="tab-pane fade active show" id="nav-companies" role="tabpanel" aria-labelledby="nav-companies-tab" fxLayout="column">
+                           <div fxFlex="100" fxLayout="column">
+                              <h3>Companies That Provide Best Car Insurance In India</h3>
+                              <p>The following lists of online car insurance companies are considered as the providers of best car insurance in India. You can buy the best car insurance plans for your car from any of these vehicle insurance providers. In early days, owners of car in India used to prefer public insurers to buy car insurance, however, in recent times people are resorting to private insurers to fulfill their online insurance requirements to safeguard cars. Here is a list of companies that offer best car insurance in India.</p>
+                           </div>
+                           <div fxFlex="100" fxLayout="row" fxLayout.xs="column">
+                              <div fxFlex="31" style="margin-right: 5%;" class="newcar">
+                                 <img alt="TATA" src="assets/quote/img/tata.png" width="100" height="100">
+                                 <h3> Tata AIG Car Insurance</h3>
+                                 <p>When it comes to best car insurance in India, Tata AIG can well be your best option to buy online insurance for car from. This provider of motor insurance provides customers with a range of exclusive benefits. Advantages like zero deduction on salvage, NCB protection for making claims on plastic, fibre, glass and rubber parts, claim settlement in 7 days and a set of 12 unique add-on covers make Tata AIG motor insurance a lucrative proposition.</p>
+                              </div>
+                              <div fxFlex="31"  style="margin-right: 5%;" class="newcar">
+                                 <img alt="HDFC" src="assets/quote/img/HDFC.gif" width="100" height="100">
+                                 <h3>HDFC ERGO Car Insurance</h3>
+                                 <p>
+                                    One of the most popular private sector general insurance companies, HDFC ERGO also offers best car insurance in India. With over 3400 cashless garages to take care of your damaged car, personal accident coverage up to Rs. 2 Lakhs and a highly dedicated customer service to resolve grievances and settle claims, HDFC ERGO car insurance are also among the best car insurance plans that you can buy for your own car.
+                                 </p>
+                              </div>
+                              <div fxFlex="31"  style="margin-right: 5%;" class="newcar" >
+                                 <img alt="UNITED-INDIA" src="assets/quote/img/UNITED-INDIA.gif" width="100" height="100">
+                                 <h3>United India Car Insurance</h3>
+                                 <p>
+                                    United India Insurance Company Limited was incorporated on 18 February 1938 and thereafter it was nationalized in the year 1972. The company offers motor insurance policies for all four wheeler vehicles ranging from two-wheeler to commercial vehicles to the private cars. Various car insurance plans are offered by United India Insurance Company Limited. The company holds a good reputation in terms of treating and valuing their customers rightly. This insurer offers discounts to their car insurance policy buyer and also offers No Claim Discount (NCB) the percentage of which ranges from 20% to 50%.
+                                 </p>
+                              </div>
+                           </div>
+                           <div fxFlex="100" fxLayout="row" fxLayout.xs="column">
+                              <div fxFlex="31"  style="margin-right: 5%;" class="newcar">
+                                 <img alt="ORIENTAL" src="assets/quote/img/ORIENTAL.gif" width="100" height="100">
+                                 <h3> Oriental Car Insurance</h3>
+                                 <p>
+                                    Being a public insurer, Oriental Insurance Company is one of the most trusted providers of vehicle insurance in India. Online car insurance plans on offer at Oriental Insurance offer policyholders free emergency service that you can avail in case your insured car breaks down. Oriental motor insurance plans also provide alternative car benefit and cover of personal items to the owners of the car. Keeping these value-added services in mind, Oriental motor insurance plan is one of the best car insurance in India.
+                                 </p>
+                              </div>
+                              <div fxFlex="31"  style="margin-right: 5%;" class="newcar">
+                                 <img alt="NEW-INDIA" src="assets/quote/img/NEW-INDIA.gif" width="100" height="100">
+                                 <h3>New India Car Insurance</h3>
+                                 <p>
+                                    Another player from public sector, New India Assurance also offers one of the best car insurance in India. Apart from all regular coverage New India car insurance plans also provide owners of the insured car with free towing facility up to a maximum of Rs. 1500. Being rated A (Excellent) by an international agency, New India boasts a very impressive claim settlement ratio as well. Decision on any claim made on New India motor insurance is made within 3 days and grievances of customers who insure cars with New India Assurance are resolved within 15 days.
+                                 </p>
+                              </div>
+                              <div fxFlex="31"  style="margin-right: 5%;" class="newcar">
+                                 <img alt="ICICI" src="assets/quote/img/ICICI.gif" width="100" height="100">
+                                 <h3>ICICI Lombard Car Insurance</h3>
+                                 <p>
+                                    ICICI Lombard is one of the largest private insurers in India. Motor insurance policies available with this provider come with benefits like Roadside Assistance, Garage Cash Cover along with instant issuance of online car insurance plans and insurance renewal of car online. If you buy online insurance for your car from ICICI Lombard you can avail cashless facilities in more than 3500 garages across India.
+                                 </p>
+                              </div>
+                           </div>
+                        </div>
+                     </mat-tab>
+                     <mat-tab label="Claim" fxHide.xs>
+                        <div class="col-md-12 newcar">
+                           <h2>Car Insurance Claim Process</h2>
+                           <p>The reason you compare car insurance online and buy insurance online is to get financial assistance from your car insurance company when you make cashless claims on your online motor insurance policy. Auto insurance companies pay out financial compensation when they approve cashless claims. So, you have to file a valid cashless auto insurance claim to get it approved by your insurer. Best car insurance companies in India take care of third party liabilities and damages to the insured vehicle upon approval of cashless claims. Since, cashless auto insurance claim process differs in different situations, you have to be aware of all the claim procedures so that you can make valid cashless insurance claim and get assistance from your car insurance company in the time of need. </p>
+                           <div class="col-md-12 newcar">
+                              <h3>Car Insurance Online Cashless Claim Process for Damage to the Insured Vehicle:</h3>
+                              <p>In case of massive damage, the following are the steps to make a successful cashless car insurance claim with your motor insurance provider:</p>
+                              <div class="col-md-6 newcar">
+                                 <div style="float: right;">
+                                    <img alt="claim" src="assets/quote/img/claim-process.gif" width="350" height="350">
+                                 </div>
+                                 <p> <b style="color:black;">• </b>Intimate your insurer at the earliest and register your auto insurance claim.</p>
+                                 <p> <b style="color:black;">• </b>Lodge an FIR in police station mentioning the whole incident in details to strengthen your cashless claim.</p>
+                                 <p> <b style="color:black;">•	 </b>You have to keep your vehicle on the accident spot until your insurer sends a surveyor for the inspection.</p>
+                                 <p> <b style="color:black;">•	</b>Your cashless auto insurance claim process will start, once the surveyor submit a report to the car insurance company.</p>
+                                 <p><strong>If the damage is minor, here are the steps to file a cashless motor insurance claim</strong></p>
+                                 <p> <b style="color:black;">•	 </b>You can take away your car and intimate to car insurance company about the accidents</p>
+                                 <p> <b style="color:black;">•	 </b>Assess the extent of your loss and file claim with your car insurance company accordingly</p>
+                                 <p> <b style="color:black;">•	 </b>Your insurance provider will send surveyor to assess the loss.
+                                 </p>
+                                 <p> <b style="color:black;">•	 </b>Cashless motor insurance claim process will start after the authorization by the surveyor.</p>
+                                 <p>For cashless motor insurance claims, you can get your damaged insured vehicle from the nearest cashless garage in the network of your car insurer. You can also make motor insurance reimbursement claim on your online car insurance policy in India.</p>
+                              </div>
+                           </div>
+                           <div class="col-md-12">
+                              <h3>Online Motor Insurance Claim Process for Third Party Liabilities</h3>
+                              <p>
+                                 Vehicle insurance online claim process to cover third party liabilities is different than motor insurance claim procedures for own damages. In case, your insured vehicle causes any third party damage or casualties, you first have to inform your car insurance company and follow their instructions. And then need to admit any insured third party person to the nearby hospital.
+                              </p>
+                           </div>
+                           <div class="col-md-12" >
+                              <h3>Vehicle Insurance Claim Procedure If Your Car Gets Stolen </h3>
+                              <p><strong>For stolen cars, policyholders have to follow a different procedure </strong></p>
+                              <p> <b style="color:black;">• </b>	Register an FIR in the police station and inform your car insurance company that your car got stolen as soon as you can.</p>
+                              <p> <b style="color:black;">• </b>	Then you have to register a motor insurance claim with your car insurance company by filling and submitting claim application form along with the necessary documents like FIR copy.</p>
+                              <p>Thus, you should go through your car insurance online policy document to understand the claim process successfully. In case of any of these unfortunate events, your online car insurance policy document will help you registering claim successfully.</p>
+                           </div>
+                        </div>
+                     </mat-tab>
+                  </mat-tab-group>
+                  <div fxHide.xs class="home-page">
+                     <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                           Factors That Determine Car Insurance Quotes Online in India
+                        </mat-expansion-panel-header>
+                        <div class="card-body new-car">
+                           <p> Car insurance quotes online in India depend on some parameters. To calculate online car insurance quotes you need to look at the following criteria:</p>
+                           <ul class="list">
+                              <li>
+                                 Find out the correct age of the vehicle that helps to evaluate online car insurance quote. Online car insurance quote increases as the vehicle gets older. There are three age-slabs to determine motor insurance quotes online like 5, 10 and 15 years. If you compare car insurance quotes online as per the age, you can see that older cars trigger higher online car insurance quotes.
+                              </li>
+                              <li>
+                                 Cubic capacity of the vehicles is the prime feature to calculate online car insurance quotes. Similar to age, the cars with higher cubic capacity also attract higher car insurance quotes online. There are three slabs such as less than 1000 cc, between 1000 cc and 1500 cc and more than 1500 cc to assess online car insurance quotes according to cubic capacity.
+                              </li>
+                              <li>IDV of the car helps to figure out the quote. As the Insured Declared Value (IDV) increases, online motor insurance quotes get elevated as well. If you make car insurance quotes comparison of two cars with same IDV or Insured Declared value, car insurance quotes online will differ on the basis of other factors</li>
+                              <li>Vehicle registration location also helps to assess online car insurance quote. It plays an instrumental role in working out online car insurance quotes. There are two zones in terms of car insurance quotes. Zone A consists of 8 major cities in India where auto insurance quotes are higher. The rest of India comes under zone B and car insurance quotes are lower in zone B. If you make car insurance quote comparison in terms of these two zones, cars registered in zone A will attract higher online car insurance quotes because the risk of accident and theft is higher in zone A.
+                                 Your four wheeler type also influences car insurance quotes online
+                              </li>
+                              <li>Type of the fuel of car determines online motor insurance quotes</li>
+                           </ul>
+                           <p>Apart from these, if you make online car insurance quotes comparison of two vehicles of the same age, car insurance quotes online will vary in terms of cubic capacity and location.</p>
+                        </div>
+                     </mat-expansion-panel>
+                     <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                           Car Insurance Exclusions
+                        </mat-expansion-panel-header>
+                        <div class="card-body new-car">
+                           <div class="card-body new-car">
+                              <p>If you buy or renew vehicle insurance policy online, it doesn’t mean that car insurance company will cover every damages in all circumstances. Car insurance exclusion stands for a provision within an auto insurance policy that eliminates coverage for certain acts or damages and they include the following.</p>
+                              <p> <b style="color:black;">• </b>	Your motor insurance will not cover any damages if you get caught driving under the influence of alcohol or drugs.</p>
+                              <p> <b style="color:black;">• </b>	Any sort of accidental damages done to your vehicle while using it for illegal activities.</p>
+                              <p> <b style="color:black;">• </b>	Damages or losses incurred while driving without a valid license.</p>
+                              <p> <b style="color:black;">• </b>	Losses or damages done to your car due to war and nuclear risk.</p>
+                              <p> <b style="color:black;">• </b>	If you use your car for commercial purpose with the license of private car, your insurer will not compensate in case of damages.</p>
+                              <p> <b style="color:black;">• </b>	In case of consistent wear and tear, your auto insurance provider will not pay for regular mechanical expenses.</p>
+                           </div>
+                        </div>
+                     </mat-expansion-panel>
+                     <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                           Online Motor Insurance Renewal
+                        </mat-expansion-panel-header>
+                        <div class="card-body new-car">
+                           <div class="card-body new-car">
+                              <p>Motor insurance renewal has the same amount of significance as buying car insurance online in India. Not only can you buy auto insurance online but you can renew can insurance online also. Do keep in mind to renew car insurance before it expires. Car insurance renewal can be done anytime online. You can effortlessly get car insurance quotes even at the time of online car insurance renewal. You can renew car insurance for an old car as well if you consider car insurance policy renewal online. Online car insurance policy renewal is time saving and convenient.</p>
+                           </div>
+                        </div>
+                     </mat-expansion-panel>
+                     <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                           How To Renew Car Insurance Online?
+                        </mat-expansion-panel-header>
+                        <div class="card-body new-car">
+                           <p>The process of motor insurance renewal is easy, fast and convenient. To renew your auto insurance, all you have to do is log into an insurance broking portal. Thereafter enter the required details related to your vehicle and previous auto insurance policy. After that, you’ll receive free car insurance quotes on your four wheeler insurance renewal. Compare those quotes and choose the suitable coverage for your car insurance renewal online. It’s wise to look for some additional features or plans offered by other insurers and compare them when you go for motor insurance renewal online. In just a click of your mouse you can instantly perform your car insurance renewal process.</p>
+                        </div>
+                     </mat-expansion-panel>
+                     <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                           How GIBL.IN Can Help You Find the Best Car Insurance Policy
+                        </mat-expansion-panel-header>
+                        <div class="card-body new-car">
+                           <p>GIBL.IN is the fastest growing online insurance marketplace from where you can easily and instantly compare various general insurance policies offered by different reputed insurance companies in India and buy or renew your policy with the highest coverage at the lowest premium. We are tied-up with the top providers of motor insurance policies across the nation. Our goal is to bring affordable insurance policies to the entire population of the country. Our team is dedicated at providing any required assistance regarding policy premium payment, claims etc. and much more.</p>
+                           <p>We let you compare the premium of different motor insurance companies. Simply visit GIBL.IN, click on car insurance, check-box ‘’on’’ for new or renewal, choose your previous insurance provider and enter your policy expiry date and click on ‘’Buy Instant Policy”. Thereafter, enter your RTO and car details and proceed to the quote comparison page.</p>
+                           <p> <b style="color:black;">• </b>In terms of car insurance, we provide our customers with an unbiased comparison of various plans offered by multiple insurers.</p>
+                           <p> <b style="color:black;">• </b>	GIBL will find and show you the best car insurance quotes from the top insurers in India instantly afterwards.</p>
+                           <p> <b style="color:black;">• </b>	You can modify your car’s IDV as per your preferences. In order to compare quotes, just add your preferred insurers by checking on the box of “Add to compare’’.</p>
+                           <p> <b style="color:black;">• </b>	You can add maximum 3 insurers for quote comparison.</p>
+                           <p> <b style="color:black;">• </b>	When you compare policies at GIBL.IN, we aim to fetch our customers the best and transparent quotes.</p>
+                           <p> <b style="color:black;">• </b>	You can compare individual motor insurance quotes from different insurance companies on the basis of cashless garages new you, base price and other different services.</p>
+                           <p> <b style="color:black;">• </b>	At GIBL.IN, we also offer attractive discounts on the premium with our car insurance policy.</p>
+                           <p> <b style="color:black;">• </b>	We bring you top motor insurance plans at the click of your mouse in the comfort of your house. We also offer instant renewal of expired car insurance policy through our site without any hassle.</p>
+                           <p>We understand that one quote doesn’t fit for all and this is the reason we have something different to offer to all our buyers of car insurance. We also understand that you invest your hard earned money in buying car insurance to get the financial benefits at the time of an unforeseen incident. This is the reason we do everything to make sure each of our customers get the best car insurance policy and that too, at the lowest premium.</p>
+                           <p>We also have our GIBL Mobile App that lets you buy or renew your car insurance on the go. So what are you waiting for? Choose GIBL.IN today to avail the broadest coverage with your car insurance at the lowest premium.</p>
+                        </div>
+                     </mat-expansion-panel>
+
+
+					<mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                           How many times may we file a claim for car insurance in a calendar year?
+                        </mat-expansion-panel-header>
+                        <div class="card-body new-car">
+                           <p>The annual claim limit for 4-wheeler insurance differs from one insurance provider to the next. Most insurance providers will enable you to file multiple claims in a year as long as your IDV isn't depleted. To find out how many times you can claim your four-wheeler insurance policy in a year, consult your policy document.</p>
+                        </div>
+                    </mat-expansion-panel>
+
+					<mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                           What does it mean to have a Zero Dep Car Insurance Policy?
+                        </mat-expansion-panel-header>
+                        <div class="card-body new-car">
+                           <p>Car insurance with Zero Depreciation is known as Zero Dep. It's an optional coverage that allows the policyholder to receive compensation up to the car's Insured Declared Value (IDV) or current market value, minus depreciation. To get the benefits of zero DEP in your four-wheeler insurance coverage, you must pay an additional premium.</p>
+                        </div>
+                    </mat-expansion-panel>
+
+					<mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                           What is the definition of a bumper-to-bumper car insurance policy?
+                        </mat-expansion-panel-header>
+                        <div class="card-body new-car">
+                           <p>Bumper to bumper auto insurance refers to a policy that covers the entire insured vehicle without taking into account the depreciation of its parts. To put it another way, this form of four-wheeler insurance entitles the insured to reimbursement up to the car's market value in the event of damage or loss. However, rates are around 20% more than standard 4-wheeler insurance coverage.</p>
+                        </div>
+                    </mat-expansion-panel>
+
+					<mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                           What is IDV (Insured Declared Value) in Car Insurance Policy?
+                        </mat-expansion-panel-header>
+                        <div class="card-body new-car">
+                           <p>The insured declared value (IDV) is the maximum amount that an insurer will pay if the vehicle is damaged or stolen at the time of a claim. It is the sum insured for each insured vehicle, which is determined at the start of the insurance period.</p>
+                        </div>
+                    </mat-expansion-panel>
+
+					<mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                           When should your car insurance coverage be renewed?
+                        </mat-expansion-panel-header>
+                        <div class="card-body new-car">
+                           <p>The insured should renew his car insurance coverage before it expires. This will ensure that your policy does not lapse and that you can continue to benefit from no-claim bonuses.</p>
+                        </div>
+                    </mat-expansion-panel>
+
+					<mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                           What dangers are covered by a comprehensive car insurance policy?
+                        </mat-expansion-panel-header>
+                        <div class="card-body new-car">
+                           <p>Your comprehensive insurance policy covers: third-party liability, external causes of accident, fire, explosion, self-ignition, lightning, riots, strikes, terrorism, malicious acts, earthquake, flood, storm, landslide, transit by rail, road, waterways, air, or lift, burglary, theft, or housebreaking.</p>
+                        </div>
+                    </mat-expansion-panel>
+
+					<mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                           How do I add or remove Hypothecation from my car insurance policy?
+                        </mat-expansion-panel-header>
+                        <div class="card-body new-car">
+                           <p>Hypothecation is a method of establishing liens on the security of movable assets. The borrower retains ownership of the goods. In the case of a car loan, for example, the borrower retains ownership of the vehicle, but it is hypothecated to the bank. It means that if the borrower defaults on the car loan, the bank has the right to sell the vehicle.</p>
+						   <p>To include hypothecation in a car insurance policy, follow these steps: </p>
+						   <p> <b style="color:black;">• </b>A letter from the bank or financer, as well as an endorsed RC copy, must be given to the insurance company's office.</p>
+						   <p> To remove hypothecation from a car insurance policy, do the following: </p>
+						   <p> <b style="color:black;">• </b>The insurance company's office must get a no objection certificate (NOC)/endorsed RC copy.</p>
+						   <p>If the payment must be received by the policyholder, it is critical to obtain NOC from the financer in the case of a hypothecated car. Otherwise, for losses to the car other than theft, the claim amount will be reimbursed to the financer.</p>
+                        </div>
+                    </mat-expansion-panel>
+
+					<mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                           Is it required to notify my insurance company if I install a CNG or LPG kit in my car?
+                        </mat-expansion-panel-header>
+                        <div class="card-body new-car">
+                           <p>If you install LPG or CNG in your vehicle, you must get it endorsed on your Registration Certificate (RC). Then, notify your insurer of the change so that your four-wheeler insurance coverage is updated. Because the cost of the premium varies depending on the type of fuel used in your vehicle.</p>
+						   <p>To include hypothecation in a car insurance policy, follow these steps: </p>
+                        </div>
+                    </mat-expansion-panel>
+
+					<mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                           In a car insurance policy, what is a No Claim Bonus (NCB)?
+                        </mat-expansion-panel-header>
+                        <div class="card-body new-car">
+                           <p>A no-claim bonus (NCB) is a discount on renewal rates given by insurance companies to vehicle owners who have not filed any claims during the previous policy term.</p>
+                        </div>
+                    </mat-expansion-panel>
+
+					<mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                           If I sell my vehicle, what happens to my car insurance policy?
+                        </mat-expansion-panel-header>
+                        <div class="card-body new-car">
+                           <p>If you sell your car, you'll need to change the name on your four-wheeler insurance policy to the new owner's. To transfer your vehicle insurance to the new owner, complete the steps below:</p>
+						   <p> <b style="color:black;">• </b>You'll need to acquire a sale affidavit prepared containing information about the transfer, the new owner, and the payment. It should be signed and notarized.</p>
+						   <p> <b style="color:black;">• </b>Fill up the RTO transfer documents and ask your Regional Transport Office for a clearance certificate (RTO).</p>
+						   <p> <b style="color:black;">• </b>Fill in the blanks on the new proposal form.</p>
+						   <p> <b style="color:black;">• </b>Please enclose the documents specified above.</p>
+						   <p> <b style="color:black;">• </b>Send it to your insurance company.</p>
+						   <p> <b style="color:black;">• </b>Within 14 days, the policy will be transferred.</p>
+                        </div>
+                    </mat-expansion-panel>
+
+					<mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                           How can I find out if a four-wheeler insurance plan is available?
+                        </mat-expansion-panel-header>
+                        <div class="card-body new-car">
+                           <p>If you wish to check the availability of a car insurance plan, you can do it by visiting the insurance company's website or calling them. On insurance brokers' websites, such as gibl.in, you may also verify the availability of four-wheeler insurance plans from various insurers.</p>
+                        </div>
+                    </mat-expansion-panel>
+
+					<mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                           What is a cashless car insurance facility?
+                        </mat-expansion-panel-header>
+                        <div class="card-body new-car">
+                           <p>A cashless facility means that you won't have to pay anything for your car's repair. Instead, your insurance company will pay the garage directly for the cost. If your insurer offers a cashless option, all you have to do is bring your vehicle to the insurer's preferred workshop. The workshop will call the insurance company and work out a payment plan with them.</p>
+                        </div>
+                    </mat-expansion-panel>
+
+					<mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                           How can I get a copy of my vehicle insurance certificate or policy?
+                        </mat-expansion-panel-header>
+                        <div class="card-body new-car">
+							<p>To download your car policy/certificate online, follow the steps outlined below:</p>
+							<p> <b style="color:black;">• </b>Visit the website where you acquired your car's insurance.</p>
+							<p> <b style="color:black;">• </b>Log in to your account on the website and select the option to download the policy online.</p>
+							<p> <b style="color:black;">• </b>Fill in your policy number as well as any other requested information, such as your phone number and email address.</p>
+							<p> <b style="color:black;">• </b>An OTP may be sent to your registered mobile number by your insurance provider</p>
+							<p> <b style="color:black;">• </b>Fill in the OTP in the space provided and submit it.</p>
+							<p> <b style="color:black;">• </b>Your 4-wheeler insurance policy/certificate will be emailed to you by the insurer.</p>
+							<p> <b style="color:black;">• </b>From the email, you can download your car insurance policy/certificate.</p>
+                        </div>
+                    </mat-expansion-panel>
+
+					<mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                           Where can I find the number for my car insurance policy?
+                        </mat-expansion-panel-header>
+                        <div class="card-body new-car">
+							<p>You can find your vehicle insurance policy number in a variety of ways:</p>
+							<p> <b style="color:black;">• </b>The policy number can be found on your motor insurer's insurance certificate or policy document.</p>
+							<p> <b style="color:black;">• </b>If you have an account with the insurer/website, broker's you can check it online.</p>
+							<p> <b style="color:black;">• </b>You can ask your representative for the policy number if you got your four-wheeler insurance through him or her.</p>
+							<p> <b style="color:black;">• </b>You can also find out your policy number by going to your insurer's nearest branch or calling them.</p>
+							<p> <b style="color:black;">• </b>You may look it up on the Insurance Information Bureau's (IIB) website, which keeps track of all vehicle insurance plans in India.</p>
+                        </div>
+                    </mat-expansion-panel>
+
+					<mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                           What should I do if my vehicle insurance policy document has an error?
+                        </mat-expansion-panel-header>
+                        <div class="card-body new-car">
+							<p>If you find a mistake in your vehicle insurance policy document, you should inform your insurer right away. Provide proof of the right information, and ask your insurer to correct the error. When the evidence is received, the insurer will issue an endorsement or a new policy document with the updated information.</p>
+                        </div>
+                    </mat-expansion-panel>
+
+					<mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                           Is it necessary to make a police report in order to file a car insurance claim?
+                        </mat-expansion-panel-header>
+                        <div class="card-body new-car">
+							<p>Your motor insurance may require you to file a First Information Report (FIR) with the police as part of the claim process for certain types of claims. Claims originating from automobile theft or third-party responsibilities, for example, will necessitate the filing of a police report. Claims stemming from car damage caused by natural disasters, on the other hand, may not require a Police FIR.</p>
+                        </div>
+                    </mat-expansion-panel>
+
+					<mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                           How can I obtain a duplicate copy of my car insurance policy via the internet?
+                        </mat-expansion-panel-header>
+                        <div class="card-body new-car">
+							<p>You can obtain a duplicate copy of your four-wheeler insurance policy by visiting your motor insurer's website and downloading it. To receive a copy of your policy through email, simply log into your account on the website and input the relevant information. The duplicate policy can be downloaded from the email that was sent to you.</p>
+                        </div>
+                    </mat-expansion-panel>
+
+					<mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                           What should I do if I lose my online car policy?
+                        </mat-expansion-panel-header>
+                        <div class="card-body new-car">
+							<p>You must apply for a duplicate copy of your online insurance document if you have misplaced or lost it. Follow the steps below to obtain a duplicate four-wheeler insurance policy:</p>
+							<p> <b style="color:black;">• </b>Intimate your motor insurance provider immediately regarding the loss of your car insurance policy document.</p>
+							<p> <b style="color:black;">• </b>Report the loss of the document to the police by filing an FIR.</p>
+							<p> <b style="color:black;">• </b>Write an application letter to your insurance company seeking a duplicate policy paper. In the application letter, include information such as the policy number, your name, the date of issue, how you lost the insurance paper, and so on.</p>
+							<p> <b style="color:black;">• </b>Place an ad in a local newspaper describing the loss of your policy document.</p>
+							<p> <b style="color:black;">• </b>Obtain a notarized indemnification bond with the signatures of two witnesses, specifying your full name.</p>
+							<p> <b style="color:black;">• </b>To the insurer, submit the application letter, indemnity bond, and a copy of the FIR.</p>
+							<p> <b style="color:black;">• </b>Your insurer will produce a duplicate insurance document after receiving all of the paperwork.</p>
+							<p> <b style="color:black;">• </b>By supplying the relevant information, you can also get a copy of your online policy from your insurer's website.</p>
+                        </div>
+                    </mat-expansion-panel>
+
+					<mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                           How can I check the status of my vehicle insurance policy?
+                        </mat-expansion-panel-header>
+                        <div class="card-body new-car">
+							<p>You can check the policy start and expiry dates in your policy document to see how far your four-wheeler insurance coverage has progressed. Between the policy start and expiry dates, your policy will be active or valid. Your policy, on the other hand, will be inactive prior to the commencement date and will expire after the expiry date.</p>
+							<p> You can also check the status of your policy on the Insurance Information Bureau's (IIB) website or through VAHAN e-services. All you have to do is enter your car's information on one of the websites and submit it. Your car insurance policy information, including the policy expiration date, will be presented.</p>
+                        </div>
+                    </mat-expansion-panel>
+
+					<mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                           How long does it take for an automobile insurance claim to be resolved?
+                        </mat-expansion-panel-header>
+                        <div class="card-body new-car">
+							<p>When it comes to settling a vehicle insurance claim, there is no standard time frame for all insurance companies. The time it takes for a claim to be settled varies by insurer. For instance, one insurer may settle your claim in 7 days, while another may settle it in 14 days after you file a claim. Furthermore, claims involving complexity typically take longer to resolve than claims involving simplicity, such as a car dent.</p>
+                        </div>
+                    </mat-expansion-panel>
+
+
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div class="container_bg" *ngIf="white_label==0">
+   <div class="container">
+      <p class="upper_footer_txt">Join Our network &amp; earn unlimited per month</p>
+      <div style="margin:auto; width:100%" fxflex.xs="100%" id="visitor">
+         <form id="new-form-label" class="footer_form example-container" fxLayout="row"   fxLayout.xs="column"  fxflex="100" [formGroup]="prospectForm" (ngSubmit)="prospectSubmit()">
+         <div fxflex="25" id="new-form" fxflex.xs="100">
+            <mat-form-field appearance="legacy">
+               <mat-icon matSuffix>account_circle</mat-icon>
+               <mat-label>Your Name</mat-label>
+               <input formControlName="prospectName" matInput placeholder="Name">
+               <mat-hint></mat-hint>
+            </mat-form-field>
+         </div>
+         <div fxflex="18">
+            <mat-form-field appearance="legacy">
+               <mat-icon matSuffix>stay_primary_portrait</mat-icon>
+               <mat-label>Your Mobile Number</mat-label>
+               <input formControlName="prospectPhone" maxlength="10" type="text" matInput placeholder="Please Enter Your Mobile Number" (input)="checkLength($event.target.value,10)">
+               <mat-hint></mat-hint>
+            </mat-form-field>
+         </div>
+         <div fxflex="22">
+            <mat-form-field appearance="legacy">
+               <mat-icon matSuffix>mail_outline</mat-icon>
+               <mat-label>Your Email Id</mat-label>
+               <input formControlName="prospectEmail" matInput placeholder="Email-ID">
+               <mat-hint></mat-hint>
+            </mat-form-field>
+         </div>
+         <div fxflex="22">
+            <mat-form-field appearance="legacy">
+               <mat-icon matSuffix>lock</mat-icon>
+               <mat-label>Password</mat-label>
+               <input matInput formControlName="prospectPassword" type="password" placeholder="Password">
+               <mat-hint></mat-hint>
+            </mat-form-field>
+         </div>
+         <div fxflex="22">
+            <mat-form-field appearance="legacy">
+               <mat-icon matSuffix>lock</mat-icon>
+               <mat-label>Confirm Password</mat-label>
+               <input type="password" formControlName="prospectConfPassword" matInput placeholder="Confirm Password">
+               <mat-hint></mat-hint>
+            </mat-form-field>
+            <p *ngIf="prospectConfirmError" style="color:red;font-size: 12px;margin-top: -9px;font-weight: 700;">Password and confirm password not matched</p>
+         </div>
+         <div fxflex="10px">
+            <button mat-raised-button color="primary">Submit</button>
+         </div>
+         </form>
+      </div>
+   </div>
+</div>
+<footer>
+   <div class="container">
+      <div fxFlex="100">
+         <div class="mob-desk-footer" fxLayout.xs="column" fxLayout.md="row">
+            <div fxFlex="30" fxFlex.md="50" fxLayout.md="row" >
+               <p class="new_subfooter n_f1" style="border-bottom: 1px solid #989898!important;">Insurance for you</p>
+               <ul class="links_1">
+                  <li><a href="https://www.gibl.in/health-insurance/">Health Insurance</a></li>
+                  <li><a href="https://www.gibl.in/home-insurance/">Home Insurance</a></li>
+                  <li><a href="https://www.gibl.in/travel-insurance/">Travel Insurance</a></li>
+                  <li><a href="https://www.gibl.in/car-insurance/">Car Insurance</a></li>
+                  <li><a href="https://www.gibl.in/two-wheeler-insurance/">Two Wheeler Insurance</a></li>
+                  <li><a href="https://www.gibl.in/health-insurance/critical-illness-insurance/">Critical Illness Insurance</a></li>
+                  <li><a href="https://www.gibl.in/personal-accident-insurance/">Personal Accident Insurance</a></li>
+                  <li><a href="https://www.gibl.in/gadget-insurance/">Gadget Insurance</a></li>
+                  <li><a href="https://www.gibl.in/health-insurance/group-mediclaim-policy/">Group Insurance</a></li>
+                  <li><a href="https://www.gibl.in/health-insurance/extended-family-insurance/">Extended Family Insurance</a></li>
+                  <li><a href="https://www.gibl.in/commercial-vehicle-insurance/">Commercial Vehicle Insurance</a></li>
+                  <li><a href="https://www.gibl.in/health-insurance/health-insurance-for-senior-citizens.html">Health Insurance for Senior Citizen</a></li>
+                  <li><a href="https://www.gibl.in/health-insurance/family-health-insurance.html">Family Health Insurance</a></li>
+               </ul>
+            </div>
+            <div  fxFlex="30" fxFlex.md="50" fxLayout.md="row">
+               <p class="new_subfooter n_f1" style="border-bottom: 1px solid #989898!important;">Insurance for your business</p>
+               <ul class="col-md-12 links_1">
+                  <li></li>
+                  <li><a href="https://www.gibl.in/fire-insurance/">Fire Insurance</a></li>
+                  <li></li>
+                  <li><a href="https://www.gibl.in/marine-insurance/">Marine(Cargo)  Insurance</a></li>
+                  <li></li>
+                  <li><a href="https://www.gibl.in/liability-insurance/">Liability  Insurance</a></li>
+                  <li><a href="https://www.gibl.in/crop-insurance/">Crop Insurance</a></li>
+                  <li><a href="https://www.gibl.in/kidnap-ransom-insurance/">Kidnap Insurance</a></li>
+                  <li><a href="https://www.gibl.in/liability-insurance/cyber-risk-insurance/">Cyber Risk Insurance</a></li>
+                  <li><a href="https://www.gibl.in/marine-insurance/export-import-insurance/">Export and Import Insurance</a></li>
+                  <li><a href="https://www.gibl.in/property-insurance/factory-warehouse-insurance/">Factory and Warehouse Insurance</a></li>
+                  <li><a href="https://www.gibl.in/errors-omissions-insurance/">Error and Omission Insurance</a></li>
+                  <li><a href="https://www.gibl.in/property-insurance/construction-all-risk-insurance/">Construction All Risk Insurance</a></li>
+                  <li><a href="https://www.gibl.in/property-insurance/office-insurance/">Office Insurance</a></li>
+                  <li><a href="https://www.gibl.in/burglary-insurance/">Burglary Insurance</a></li>
+                  <li><a href="https://www.gibl.in/health-insurance/group-mediclaim-policy/">Group Mediclaim Insurance</a></li>
+               </ul>
+            </div>
+            <div  fxFlex="30" fxFlex.md="50">
+               <p class="new_subfooter n_f1" style="border-bottom: 1px solid #989898!important;">About GIBL</p>
+               <ul class="links_1">
+                  <li><a href="https://www.gibl.in/about-us/">About Us</a></li>
+                  <li><a href="https://www.gibl.in/process/">Process</a></li>
+                  <li><a href="https://www.gibl.in/faq/">FAQ</a></li>
+                  <li><a href="https://www.gibl.in/blog" target="_blank">Blog</a></li>
+                  <li><a href="https://www.gibl.in/privacy-policy/">Privacy Policy </a></li>
+                  <li><a href="https://www.gibl.in/terms-of-use/">Terms Of Use</a></li>
+                  <li><a href="https://www.gibl.in/payment-modes/">Payment Modes</a></li>
+                  <li><a href="https://www.gibl.in/disclaimer/">Disclaimer</a></li>
+                  <li><a href="https://www.gibl.in/cancel-refund/">Cancel &amp; Refund Policy</a></li>
+                  <li><a href="https://www.gibl.in/contact-us/">Contact Us</a></li>
+                  <li><a href="https://www.gibl.in/government-scheme/">Government Scheme</a></li>
+                  <li><a href="https://www.gibl.in/careers/">Careers</a></li>
+                  <li><a href="https://www.gibl.in/sitemap/">Sitemap</a></li>
+               </ul>
+            </div>
+            <div  fxFlex="30" fxFlex.md="50">
+               <p class="new_subfooter n_f1" style="border-bottom: 1px solid #989898!important;">Security &amp; Payment</p>
+               <ul class="links_1">
+                  <li>
+                     <img src="https://www.gibl.in/government-scheme/image/payments.jpg" alt="Gibl-instant-policy" style="width: 150px;">
+                  </li>
+                  <br>
+                  <li style="padding-left: 0px;"><a  href="https://www.gibl.in/how-it-works/" target="_blank" class="btn-primary-new">How it works</a></li>
+                  <li>
+                     <a href="https://www.trustpilot.com/review/gibl.in">
+                        <img data-src="https://www.gibl.in/assets/quote/images/trustpilot_logo.png" alt="Trustpilot" class=" lazyloaded" style="width: 150px;" src="https://www.gibl.in/assets/quote/images/trustpilot_logo.png">
+                     </a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <div class="desk-footer" fxHide fxShow.xs fxShow.sm>
+            <mat-accordion>
+               <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+               <mat-expansion-panel-header>
+                  <mat-panel-title>
+                     Insurance for you
+                  </mat-panel-title>
+                  <mat-panel-description>
+                     {{panelOpenState ? '' : ''}}
+                  </mat-panel-description>
+               </mat-expansion-panel-header>
+               <ul class="links_1">
+                  <li><a href="https://www.gibl.in/health-insurance/">Health Insurance</a></li>
+                  <li><a href="https://www.gibl.in/home-insurance/">Home Insurance</a></li>
+                  <li><a href="https://www.gibl.in/travel-insurance/">Travel Insurance</a></li>
+                  <li><a href="https://www.gibl.in/car-insurance/">Car Insurance</a></li>
+                  <li><a href="https://www.gibl.in/two-wheeler-insurance/">Two Wheeler Insurance</a></li>
+                  <li><a href="https://www.gibl.in/health-insurance/critical-illness-insurance/">Critical Illness Insurance</a></li>
+                  <li><a href="https://www.gibl.in/personal-accident-insurance/">Personal Accident Insurance</a></li>
+                  <li><a href="https://www.gibl.in/gadget-insurance/">Gadget Insurance</a></li>
+                  <li><a href="https://www.gibl.in/health-insurance/group-mediclaim-policy/">Group Insurance</a></li>
+                  <li><a href="https://www.gibl.in/health-insurance/extended-family-insurance/">Extended Family Insurance</a></li>
+                  <li><a href="https://www.gibl.in/commercial-vehicle-insurance/">Commercial Vehicle Insurance</a></li>
+                  <li><a href="https://www.gibl.in/health-insurance/health-insurance-for-senior-citizens.html">Health Insurance for Senior Citizen</a></li>
+                  <li><a href="https://www.gibl.in/health-insurance/family-health-insurance.html">Family Health Insurance</a></li>
+               </ul>
+               </mat-expansion-panel>
+               <mat-expansion-panel (opened)="panelOpenState = true"
+               (closed)="panelOpenState = false">
+               <mat-expansion-panel-header>
+                  <mat-panel-title>
+                     Insurance For your Business
+                  </mat-panel-title>
+                  <mat-panel-description>
+                     {{panelOpenState ? '' : ''}}
+                  </mat-panel-description>
+               </mat-expansion-panel-header>
+               <ul class="links_1">
+                  <li></li>
+                  <li><a href="https://www.gibl.in/fire-insurance/">Fire Insurance</a></li>
+                  <li></li>
+                  <li><a href="https://www.gibl.in/marine-insurance/">Marine(Cargo)  Insurance</a></li>
+                  <li></li>
+                  <li><a href="https://www.gibl.in/liability-insurance/">Liability  Insurance</a></li>
+                  <li><a href="https://www.gibl.in/crop-insurance/">Crop Insurance</a></li>
+                  <li><a href="https://www.gibl.in/kidnap-ransom-insurance/">Kidnap Insurance</a></li>
+                  <li><a href="https://www.gibl.in/liability-insurance/cyber-risk-insurance/">Cyber Risk Insurance</a></li>
+                  <li><a href="https://www.gibl.in/marine-insurance/export-import-insurance/">Export and Import Insurance</a></li>
+                  <li><a href="https://www.gibl.in/property-insurance/factory-warehouse-insurance/">Factory and Warehouse Insurance</a></li>
+                  <li><a href="https://www.gibl.in/errors-omissions-insurance/">Error and Omission Insurance</a></li>
+                  <li><a href="https://www.gibl.in/property-insurance/construction-all-risk-insurance/">Construction All Risk Insurance</a></li>
+                  <li><a href="https://www.gibl.in/property-insurance/office-insurance/">Office Insurance</a></li>
+                  <li><a href="https://www.gibl.in/burglary-insurance/">Burglary Insurance</a></li>
+                  <li><a href="https://www.gibl.in/health-insurance/group-mediclaim-policy/">Group Mediclaim Insurance</a></li>
+               </ul>
+               </mat-expansion-panel>
+               <mat-expansion-panel (opened)="panelOpenState = true"
+               (closed)="panelOpenState = false">
+               <mat-expansion-panel-header>
+                  <mat-panel-title>
+                     About You
+                  </mat-panel-title>
+                  <mat-panel-description>
+                     {{panelOpenState ? '' : ''}}
+                  </mat-panel-description>
+               </mat-expansion-panel-header>
+               <ul class="links_1">
+                  <li><a href="https://www.gibl.in/about-us/">About Us</a></li>
+                  <li><a href="https://www.gibl.in/process/">Process</a></li>
+                  <li><a href="https://www.gibl.in/faq/">FAQ</a></li>
+                  <li><a href="https://www.gibl.in/blog" target="_blank">Blog</a></li>
+                  <li><a href="https://www.gibl.in/privacy-policy/">Privacy Policy </a></li>
+                  <li><a href="https://www.gibl.in/terms-of-use/">Terms Of Use</a></li>
+                  <li><a href="https://www.gibl.in/payment-modes/">Payment Modes</a></li>
+                  <li><a href="https://www.gibl.in/disclaimer/">Disclaimer</a></li>
+                  <li><a href="https://www.gibl.in/cancel-refund/">Cancel &amp; Refund Policy</a></li>
+                  <li><a href="https://www.gibl.in/contact-us/">Contact Us</a></li>
+                  <li><a href="https://www.gibl.in/government-scheme/">Government Scheme</a></li>
+                  <li><a href="https://www.gibl.in/careers/">Careers</a></li>
+                  <li><a href="https://www.gibl.in/sitemap/">Sitemap</a></li>
+               </ul>
+               </mat-expansion-panel>
+               <mat-expansion-panel (opened)="panelOpenState = true"
+               (closed)="panelOpenState = false">
+               <mat-expansion-panel-header>
+                  <mat-panel-title>
+                     Security & Payment
+                  </mat-panel-title>
+                  <mat-panel-description>
+                     {{panelOpenState ? '' : ''}}
+                  </mat-panel-description>
+               </mat-expansion-panel-header>
+               <ul class="links_1">
+                  <li>
+                     <!--<img src="https://www.gibl.in/government-scheme/image/payments.jpg" alt="Gibl-instant-policy" style="width: 150px;">-->
+                     <img src="assets/quote/img/payments.jpg" alt="Gibl-instant-policy" style="width: 150px;">
+                  </li>
+                  <br>
+                  <li style="padding-left: 0px;"><a href="https://www.gibl.in/how-it-works/" target="_blank" rel="noopener" class="btn-primary-new">How it works</a></li>
+               </ul>
+               </mat-expansion-panel>
+            </mat-accordion>
+         </div>
+      </div>
+   </div>
+</footer>
+<div class="container-fluid footer-new" style="background:#055ba9;" *ngIf="white_label==0">
+   <div id="ctl00_n_footer" class="n_footer">
+      <div class="container" fxFlex="row" fxLayout.xs="column"  style="justify-content: space-between">
+         <div fxFlex="24" fxFlex.xs="100"  fxFlex.sm="100" style="float: left; ">
+            <p class="l_footer_txt">Follow Us</p>
+            <div style="float: right; padding-top: 5px;">
+               <a href="https://www.facebook.com/giblofficial">
+                  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                     width="32" height="32"
+                     viewBox="0 0 172 172"
+                     style=" fill:#000000;">
+                     <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                        <path d="M0,172v-172h172v172z" fill="none"></path>
+                        <g fill="#ffffff">
+                           <path d="M141.04,13.76h-110.08c-9.4944,0 -17.2,7.7056 -17.2,17.2v110.08c0,9.4944 7.7056,17.2 17.2,17.2h110.08c9.4944,0 17.2,-7.7056 17.2,-17.2v-110.08c0,-9.4944 -7.7056,-17.2 -17.2,-17.2zM127.28,65.36h-6.88c-7.3616,0 -10.32,1.72 -10.32,6.88v10.32h17.2l-3.44,17.2h-13.76v51.6h-17.2v-51.6h-13.76v-17.2h13.76v-10.32c0,-13.76 6.88,-24.08 20.64,-24.08c9.976,0 13.76,3.44 13.76,3.44z"></path>
+                        </g>
+                     </g>
+                  </svg>
+               </a>
+               <a href="https://twitter.com/giblofficial">
+                  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                     width="32" height="32"
+                     viewBox="0 0 172 172"
+                     style=" fill:#000000;">
+                     <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                        <path d="M0,172v-172h172v172z" fill="none"></path>
+                        <g fill="#ffffff">
+                           <path d="M127.28,10.32h-82.56c-18.96816,0 -34.4,15.43528 -34.4,34.40344v82.54968c0,18.9716 15.43184,34.40688 34.4,34.40688h82.56c18.96816,0 34.4,-15.43528 34.4,-34.40344v-82.55656c0,-18.96816 -15.43184,-34.4 -34.4,-34.4zM124.65872,70.4512c0.0344,0.81528 0.05504,1.64088 0.05504,2.47336c0,25.24272 -19.17112,54.35544 -54.22472,54.35544c-10.76032,0 -20.78104,-3.16136 -29.20904,-8.58624c1.48952,0.17888 2.99968,0.26488 4.54424,0.26488c8.93024,0 17.1484,-3.04784 23.66376,-8.17344c-8.33856,-0.15136 -15.36992,-5.68632 -17.802,-13.26808c1.16616,0.2236 2.35984,0.344 3.59136,0.344c1.7372,0 3.4228,-0.23048 5.01552,-0.67424c-8.71008,-1.76128 -15.27704,-9.47376 -15.27704,-18.73424c0,-0.08256 0,-0.16168 0,-0.2408c2.56968,1.43104 5.504,2.29448 8.63096,2.39424c-5.11872,-3.43312 -8.47616,-9.27424 -8.47616,-15.90312c0,-3.50192 0.93568,-6.78024 2.57656,-9.60792c9.40152,11.5584 23.4436,19.16424 39.27792,19.96232c-0.3268,-1.40008 -0.4988,-2.8552 -0.4988,-4.3516c0,-10.55048 8.5312,-19.10576 19.0576,-19.10576c5.47992,0 10.43008,2.31856 13.90448,6.03376c4.33784,-0.85656 8.42112,-2.44584 12.10192,-4.63368c-1.42072,4.4548 -4.44448,8.20096 -8.38328,10.56768c3.85968,-0.46784 7.52672,-1.48952 10.94952,-3.01c-2.54904,3.83216 -5.7792,7.19992 -9.49784,9.89344z"></path>
+                        </g>
+                     </g>
+                  </svg>
+               </a>
+               <a href="https://www.youtube.com/user/GreenLifeInsurance">
+                  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                     width="32" height="32"
+                     viewBox="0 0 172 172"
+                     style=" fill:#000000;">
+                     <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                        <path d="M0,172v-172h172v172z" fill="none"></path>
+                        <g fill="#ffffff">
+                           <path d="M30.96,13.76c-9.4944,0 -17.2,7.7056 -17.2,17.2v110.08c0,9.4944 7.7056,17.2 17.2,17.2h110.08c9.4944,0 17.2,-7.7056 17.2,-17.2v-110.08c0,-9.4944 -7.7056,-17.2 -17.2,-17.2zM51.6,27.52h8.25735l5.50265,13.76l5.50265,-13.76h8.25735l-10.32,24.08v13.76h-6.88v-13.7936c-2.064,-5.5384 -8.9096,-20.572 -10.32,-24.0464zM86,37.84c3.0616,0 6.08907,0.92611 8.01547,3.26531c1.4792,1.6856 2.30453,4.40427 2.30453,7.98187v5.02563c0,3.5776 -0.68505,6.0544 -2.12985,7.74c-1.9264,2.3048 -5.12855,3.50719 -8.19015,3.50719c-3.0616,0 -6.18985,-1.20239 -8.11625,-3.50719c-1.4792,-1.6856 -2.20375,-4.1624 -2.20375,-7.74v-4.99203c0,-3.5776 0.79093,-6.32987 2.30453,-8.01547c1.9264,-2.3392 4.54107,-3.26531 8.01547,-3.26531zM99.76,37.84h6.88v20.64c0.172,0.9288 1.16745,1.34375 2.09625,1.34375c1.4104,0 3.20135,-1.6504 4.78375,-3.4736v-18.51015h6.88v27.52h-6.88v-4.75015c-2.7864,2.7176 -5.16054,4.75257 -8.29094,4.64937c-2.2704,-0.0688 -3.85146,-0.8952 -4.64266,-2.5464c-0.4816,-0.9632 -0.8264,-2.51335 -0.8264,-4.78375zM86,43.40985c-0.473,0 -0.92585,0.10374 -1.33703,0.28219c-0.41119,0.17845 -0.7834,0.4343 -1.09515,0.7525c-0.31175,0.3182 -0.56438,0.69606 -0.73906,1.11531c-0.17469,0.41925 -0.26875,0.8823 -0.26875,1.3639v9.66156c0,0.9632 0.38431,1.84282 1.00781,2.47922c0.31175,0.3182 0.68397,0.57405 1.09515,0.7525c0.41119,0.17845 0.86403,0.28219 1.33703,0.28219c0.473,0 0.92585,-0.10374 1.33703,-0.28219c1.23356,-0.53535 2.10297,-1.78692 2.10297,-3.23172v-9.66156c0,-1.9264 -1.548,-3.5139 -3.44,-3.5139zM85.9664,75.68h0.06719c0,0 23.08052,0.00107 38.49172,1.10187c2.1672,0.2408 6.84882,0.27547 11.04562,4.57547c3.3024,3.2336 4.36719,10.66265 4.36719,10.66265c0,0 1.10187,5.26508 1.10187,13.96828v8.14985c0,8.7032 -1.10187,13.96828 -1.10187,13.96828c0,0 -1.06479,7.42906 -4.36719,10.66266c-4.1968,4.3 -8.87842,4.33467 -11.04562,4.57547c-15.4112,1.1008 -38.52531,1.13547 -38.52531,1.13547c0,0 -28.62375,-0.27627 -37.43015,-1.10187c-2.4424,-0.4472 -7.94398,-0.30987 -12.14078,-4.57547c-3.3024,-3.268 -4.36719,-10.69625 -4.36719,-10.69625c0,0 -1.10187,-5.26508 -1.10187,-13.96828v-8.14985c0,-8.7032 1.10187,-13.96828 1.10187,-13.96828c0,0 1.06479,-7.42905 4.36719,-10.66265c4.1968,-4.3 8.87842,-4.33467 11.04562,-4.57547c15.4112,-1.1008 38.49172,-1.10187 38.49172,-1.10187zM41.28,89.44v6.8061h6.88v34.4739h6.88v-34.4739h6.88v-6.8061zM86,89.44v41.28h6.88v-4.3c2.17064,2.68664 4.99832,4.3 7.31,4.3c2.58688,0 4.84406,-1.39212 5.71094,-4.05813c0.40936,-1.44136 0.71154,-2.78747 0.73906,-5.83187v-9.46c0,-3.39872 -0.46016,-5.95926 -0.8936,-7.40406c-0.86688,-2.68664 -2.96608,-4.18874 -5.5564,-4.20594c-3.3712,-0.02408 -4.73,1.72 -7.31,4.73v-15.05zM61.92,99.76v22.99828c0,2.48368 0.34561,4.15014 0.79281,5.24062c0.7568,1.76816 2.29996,2.7211 4.50156,2.7211c2.5112,0 5.74803,-1.76896 8.46563,-4.6964v4.6964h6.88v-30.96h-6.88v21.56719c-1.5136,2.00896 -3.71681,3.50719 -5.09281,3.50719c-0.8944,0 -1.61519,-0.37662 -1.78719,-1.3639v-23.71047zM120.50078,99.76c-3.46752,0 -6.1756,1.09054 -8.13641,3.1511c-1.4448,1.52048 -2.28437,4.00609 -2.28437,7.22937v10.54844c0,3.20264 0.92364,5.44391 2.365,6.94719c1.96424,2.06056 4.66695,3.0839 8.21703,3.0839c3.54664,0 6.33879,-1.07747 8.21703,-3.26531c0.8256,-0.96664 1.35514,-2.05443 1.58562,-3.26531c0.06192,-0.54696 0.25531,-2.03153 0.25531,-3.78937h-6.88v2.74797c0,1.59616 -1.54112,2.88906 -3.44,2.88906c-1.89888,0 -3.44,-1.29634 -3.44,-2.88906v-6.18797h13.76v-1.98203v-4.97187c0,-3.2164 -0.78975,-5.57108 -2.21047,-7.095c-1.90232,-2.06056 -4.60315,-3.1511 -8.00875,-3.1511zM120.4,104.7386c1.89888,0 3.44,1.29634 3.44,2.88906v4.56875h-6.88v-4.56875c0,-1.59616 1.54112,-2.88906 3.44,-2.88906zM97.07922,105.76656c1.8748,0 2.68078,1.15208 2.68078,4.74344v9.46c0,3.59136 -0.80598,4.83078 -2.68078,4.83078c-1.06984,0 -3.11218,-0.73374 -4.19922,-1.82078v-15.05c1.08704,-1.07328 3.12938,-2.16344 4.19922,-2.16344z"></path>
+                        </g>
+                     </g>
+                  </svg>
+               </a>
+               <a href="https://www.instagram.com/giblofficial/">
+                  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                     width="32" height="32"
+                     viewBox="0 0 172 172"
+                     style=" fill:#000000;">
+                     <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                        <path d="M0,172v-172h172v172z" fill="none"></path>
+                        <g fill="#ffffff">
+                           <path d="M41.28,10.32c-17.0624,0 -30.96,13.8976 -30.96,30.96v89.44c0,17.0624 13.8976,30.96 30.96,30.96h89.44c17.0624,0 30.96,-13.8976 30.96,-30.96v-89.44c0,-17.0624 -13.8976,-30.96 -30.96,-30.96zM130.72,27.52h10.32c1.892,0 3.44,1.548 3.44,3.44v10.32c0,1.892 -1.548,3.44 -3.44,3.44h-10.32c-1.892,0 -3.44,-1.548 -3.44,-3.44v-10.32c0,-1.892 1.548,-3.44 3.44,-3.44zM86,34.4c18.3352,0 34.46773,9.632 43.61813,24.08h14.86187v68.8c0,9.4944 -7.7056,17.2 -17.2,17.2h-82.56c-9.4944,0 -17.2,-7.7056 -17.2,-17.2v-68.8h14.86187c9.1504,-14.448 25.28293,-24.08 43.61813,-24.08zM86,41.28c-24.6648,0 -44.72,20.0552 -44.72,44.72c0,24.6648 20.0552,44.72 44.72,44.72c24.6648,0 44.72,-20.0552 44.72,-44.72c0,-24.6648 -20.0552,-44.72 -44.72,-44.72zM86,55.04c17.0624,0 30.96,13.8976 30.96,30.96c0,17.0624 -13.8976,30.96 -30.96,30.96c-17.0624,0 -30.96,-13.8976 -30.96,-30.96c0,-17.0624 13.8976,-30.96 30.96,-30.96z"></path>
+                        </g>
+                     </g>
+                  </svg>
+               </a>
+               <a href=" https://www.linkedin.com/company/giblofficial/">
+                  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                     width="32" height="32"
+                     viewBox="0 0 172 172"
+                     style=" fill:#000000;">
+                     <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                        <path d="M0,172v-172h172v172z" fill="none"></path>
+                        <g fill="#ffffff">
+                           <path d="M141.04,13.76h-110.08c-9.4944,0 -17.2,7.7056 -17.2,17.2v110.08c0,9.4944 7.7056,17.2 17.2,17.2h110.08c9.4944,0 17.2,-7.7056 17.2,-17.2v-110.08c0,-9.4944 -7.7056,-17.2 -17.2,-17.2zM58.48,68.8v65.36h-20.64v-65.36zM37.84,49.7768c0,-4.816 4.128,-8.4968 10.32,-8.4968c6.192,0 10.0792,3.6808 10.32,8.4968c0,4.816 -3.8528,8.7032 -10.32,8.7032c-6.192,0 -10.32,-3.8872 -10.32,-8.7032zM134.16,134.16h-20.64c0,0 0,-31.8544 0,-34.4c0,-6.88 -3.44,-13.76 -12.04,-13.8976h-0.2752c-8.3248,0 -11.7648,7.0864 -11.7648,13.8976c0,3.1304 0,34.4 0,34.4h-20.64v-65.36h20.64v8.8064c0,0 6.6392,-8.8064 19.9864,-8.8064c13.6568,0 24.7336,9.3912 24.7336,28.4144z"></path>
+                        </g>
+                     </g>
+                  </svg>
+               </a>
+            </div>
+         </div>
+         <div  fxFlex="30" fxFlex.xs="100" fxFlex.sm="100">
+            <p class="l_footer_txt">Download our App</p>
+            <a href="https://play.google.com/store/apps/details?id=com.ionicframework.giblpartner">
+            <img src="https://www.gibl.in/UI/assets/quote/images/google-play.png" class="google_play_img" alt="Google Paly Store" width="" height="">
+            </a>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="container-fluid footer-new">
+   <p>
+      ©Copyright 2014 - till now | www.gibl.in | All Rights Reserved | Insurance is the subject matter of solicitation.
+   </p>
+   <p>
+      IRDA License Code No : DB 482/10 Dated 27-05-2022 valid Till date 26-05-2025, Direct(Non-Life) | Principal Officer : Mr.
+      Sahid Ali | Ph: 033-6607 4257 | Our emergency lockdown number: +91 6289901320
+   </p>
+   <p>Regd. & Corp. Office : GreenLife Insurance Broking Pvt. Ltd., A-4/B, 1st Floor, Rishi Tech Park, New Town,
+      Kolkata-700156, West Bengal, India |
+      <a href="http://eceltic.ie/" target="blank" rel="noopener">Designed & Developed By : e-Celtic</a>
+   </p>
+</div>
+</ng-container>
+
+
+<button [@modalButton]="isShow" *ngIf="isShowOffer" mat-fab="" color="none" aria-label="Example icon button with a bookmark icon" class="mat-focus-indicator mat-fab mat-button-base mat-accent" (click)="offerModalOpen()" style="position: fixed;
+    background-image: url(assets/quote/img/auto-icon.png); background-size: contain; background-color: #fff; width: 132px; height: 138px; background-repeat:no-repeat;z-index: 1;" class="offer-click auto-position">
+</button>
+
+
+<!-- *ngIf="isShow" -->
+<div class="myModal" [@content]="isShow" [ngClass]="modalClass">
+   <div class="content my-modal-container" style="width: auto; border-radius: 45px;width: auto; max-width: 425px; border-radius: 45px;">
+      <div>
+         <button mat-fab="" color="none" aria-label="Example icon button with a bookmark icon" class="mat-focus-indicator mat-button-base mat-accent"
+            style="float: right; background-color: #8d8d8dc6; margin: -56px -40px 0 0; color: #fff; border-radius: 50%;" (click)="offerModalClose()"> <!--  mat-fab  -->
+            X
+         </button>
+      </div>
+      <div class="container">
+         <div fxFlex="100" *ngIf="autoOfferContentImgOrText">
+            <img style="cursor: pointer; max-width:100%; border-radius: 6%;" src="assets/quote/img/win.jpg" (click)="showImgOrTestData(false)">
+         </div>
+         <div fxFlex="100" *ngIf="!autoOfferContentImgOrText">
+            <img style="cursor: pointer; max-width:100%; border-radius: 6%;" src="assets/quote/img/step.jpg">
+
+            <div class="example-button-row" style="float:right;">
+               <button mat-raised-button color="warn" (click)="redirctCampaignPage();" style="    padding: 0 18px;
+               border-radius: 12px;
+               overflow: visible;
+               transform: translate3d(0,0,0);
+               transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
+               margin-top: 13px;">Play Now & Win</button>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div class="my-loader" *ngIf="!isReady">
+  Loading....
+</div>

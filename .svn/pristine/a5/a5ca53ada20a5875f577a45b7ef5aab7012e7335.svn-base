@@ -1,0 +1,13 @@
+.quoteBodyBackground {
+  height: 770px;
+}
+.mat-button-wrapper {
+  font-size: 14px;
+  padding-left: 1px;
+  padding-top: 0px;
+  font-weight: bold;
+}
+
+header .mat-toolbar span {
+  padding-left: 0px;
+}
